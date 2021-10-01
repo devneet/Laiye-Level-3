@@ -1,0 +1,13 @@
+[28-09-2021 22:46:25][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[28-09-2021 22:46:25][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[28-09-2021 22:46:25][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[28-09-2021 22:46:47][INFO][Initialization.task][47] Setting up the output report file path
+[28-09-2021 22:46:47][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[28-09-2021 22:46:47][INFO][Initialization.task][65] Checking if Office is installed
+[28-09-2021 22:46:48][INFO][Initialization.task][74] Setting up credential values in the output report
+[28-09-2021 22:46:49][INFO][Initialization.task][83] Calling OpenExchange API for determining exchange rate.
+[28-09-2021 22:46:51][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[28-09-2021 22:46:51][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[28-09-2021 22:46:51][INFO][GetChinaSouthernAirlinesData.task][23] Open Chrome browser and enter the China Southern Airlines webpage
+[28-09-2021 22:47:03][INFO][GetChinaSouthernAirlinesData.task][30] The webpage window is maximized
+[28-09-2021 22:47:13][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

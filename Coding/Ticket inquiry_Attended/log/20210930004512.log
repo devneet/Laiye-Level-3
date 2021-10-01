@@ -1,0 +1,83 @@
+[30-09-2021 00:45:12][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Attended\
+[30-09-2021 00:45:12][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Process Air_Ticket_Enquiry_Process_Attended.flow start running
+[30-09-2021 00:45:12][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 00:45:12][INFO][Initialization.task][36] Checking if configuration file exists
+[30-09-2021 00:45:12][INFO][Initialization.task][48] Fetching configuration details
+[30-09-2021 00:45:14][INFO][Initialization.task][50] Configuration details fetched successfully
+[30-09-2021 00:45:14][INFO][Initialization.task][55] Setting up the output report file path
+[30-09-2021 00:45:14][INFO][Initialization.task][59] Cleaning up all applications
+[30-09-2021 00:45:14][INFO][Initialization.task][71] Fetching credentials details from Windows Credential Manager
+[30-09-2021 00:45:14][INFO][Initialization.task][73] Credentials details fetched successfully from Windows Credential Manager
+[30-09-2021 00:45:14][WARN][Initialization.task][81] Deleting the output report file as it already exists
+[30-09-2021 00:45:14][INFO][Initialization.task][88] Checking if Office is installed
+[30-09-2021 00:45:15][INFO][Initialization.task][97] Setting up credential values in the output report
+[30-09-2021 00:45:16][INFO][Initialization.task][106] Calling OpenExchange API for determining exchange rate.
+[30-09-2021 00:45:19][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Exception？”The result is false
+[30-09-2021 00:45:19][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Get Southern Data
+[30-09-2021 00:45:19][INFO][GetChinaSouthernAirlinesData.task][36] Open Chrome browser and enter the China Southern Airlines webpage
+[30-09-2021 00:45:27][INFO][GetChinaSouthernAirlinesData.task][43] The webpage window is maximized
+[30-09-2021 00:45:38][INFO][GetChinaSouthernAirlinesData.task][48] The page load return value is: 1 (success:1,failure:0)
+[30-09-2021 00:45:38][INFO][GetChinaSouthernAirlinesData.task][63] Entering the search parameters for China Southern Airlines
+[30-09-2021 00:46:17][ERROR][GetChinaSouthernAirlinesData.task][191] Application exception, failed to open extract data from China Southern Airlines website:{
+	"File" : "GetChinaSouthernAirlinesData.task",
+	"Line" : 66,
+	"Message" : " Call error occurred in Module Mouse.MouseAuto. Action:Exception has been thrown by the target of an invocation.\nException in Mouse.Action,Element not found",
+	"_InternalState_" : 1
+}
+[30-09-2021 00:46:17][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Business Exception?”The result is true
+[30-09-2021 00:46:17][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Retry?”The result is true
+[30-09-2021 00:46:17][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 00:46:17][INFO][Initialization.task][36] Checking if configuration file exists
+[30-09-2021 00:46:17][INFO][Initialization.task][48] Fetching configuration details
+[30-09-2021 00:46:18][INFO][Initialization.task][50] Configuration details fetched successfully
+[30-09-2021 00:46:18][INFO][Initialization.task][55] Setting up the output report file path
+[30-09-2021 00:46:18][INFO][Initialization.task][59] Cleaning up all applications
+[30-09-2021 00:46:19][INFO][Initialization.task][71] Fetching credentials details from Windows Credential Manager
+[30-09-2021 00:46:19][INFO][Initialization.task][73] Credentials details fetched successfully from Windows Credential Manager
+[30-09-2021 00:46:19][WARN][Initialization.task][81] Deleting the output report file as it already exists
+[30-09-2021 00:46:19][INFO][Initialization.task][88] Checking if Office is installed
+[30-09-2021 00:46:20][INFO][Initialization.task][97] Setting up credential values in the output report
+[30-09-2021 00:46:21][INFO][Initialization.task][106] Calling OpenExchange API for determining exchange rate.
+[30-09-2021 00:46:23][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Exception？”The result is false
+[30-09-2021 00:46:23][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Get Southern Data
+[30-09-2021 00:46:23][INFO][GetChinaSouthernAirlinesData.task][36] Open Chrome browser and enter the China Southern Airlines webpage
+[30-09-2021 00:46:31][INFO][GetChinaSouthernAirlinesData.task][43] The webpage window is maximized
+[30-09-2021 00:46:47][INFO][GetChinaSouthernAirlinesData.task][48] The page load return value is: 1 (success:1,failure:0)
+[30-09-2021 00:46:47][INFO][GetChinaSouthernAirlinesData.task][63] Entering the search parameters for China Southern Airlines
+[30-09-2021 00:47:20][ERROR][GetChinaSouthernAirlinesData.task][191] Application exception, failed to open extract data from China Southern Airlines website:{
+	"File" : "GetChinaSouthernAirlinesData.task",
+	"Line" : 66,
+	"Message" : " Call error occurred in Module Mouse.MouseAuto. Action:Exception has been thrown by the target of an invocation.\nException in Mouse.Action,Element not found",
+	"_InternalState_" : 1
+}
+[30-09-2021 00:47:20][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Business Exception?”The result is true
+[30-09-2021 00:47:20][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Retry?”The result is true
+[30-09-2021 00:47:20][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 00:47:20][INFO][Initialization.task][36] Checking if configuration file exists
+[30-09-2021 00:47:20][INFO][Initialization.task][48] Fetching configuration details
+[30-09-2021 00:47:21][INFO][Initialization.task][50] Configuration details fetched successfully
+[30-09-2021 00:47:21][INFO][Initialization.task][55] Setting up the output report file path
+[30-09-2021 00:47:21][INFO][Initialization.task][59] Cleaning up all applications
+[30-09-2021 00:47:22][INFO][Initialization.task][71] Fetching credentials details from Windows Credential Manager
+[30-09-2021 00:47:22][INFO][Initialization.task][73] Credentials details fetched successfully from Windows Credential Manager
+[30-09-2021 00:47:22][WARN][Initialization.task][81] Deleting the output report file as it already exists
+[30-09-2021 00:47:22][INFO][Initialization.task][88] Checking if Office is installed
+[30-09-2021 00:47:23][INFO][Initialization.task][97] Setting up credential values in the output report
+[30-09-2021 00:47:24][INFO][Initialization.task][106] Calling OpenExchange API for determining exchange rate.
+[30-09-2021 00:47:27][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Exception？”The result is false
+[30-09-2021 00:47:27][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Get Southern Data
+[30-09-2021 00:47:27][INFO][GetChinaSouthernAirlinesData.task][36] Open Chrome browser and enter the China Southern Airlines webpage
+[30-09-2021 00:47:34][INFO][GetChinaSouthernAirlinesData.task][43] The webpage window is maximized
+[30-09-2021 00:47:50][INFO][GetChinaSouthernAirlinesData.task][48] The page load return value is: 1 (success:1,failure:0)
+[30-09-2021 00:47:50][INFO][GetChinaSouthernAirlinesData.task][63] Entering the search parameters for China Southern Airlines
+[30-09-2021 00:48:28][ERROR][GetChinaSouthernAirlinesData.task][191] Application exception, failed to open extract data from China Southern Airlines website:{
+	"File" : "GetChinaSouthernAirlinesData.task",
+	"Line" : 66,
+	"Message" : " Call error occurred in Module Mouse.MouseAuto. Action:Exception has been thrown by the target of an invocation.\nException in Mouse.Action,Element not found",
+	"_InternalState_" : 1
+}
+[30-09-2021 00:48:28][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Business Exception?”The result is true
+[30-09-2021 00:48:28][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Retry?”The result is false
+[30-09-2021 00:48:28][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Notify Exception
+[30-09-2021 00:48:29][INFO][ExceptionNotifier.task][17] Creating the email body for the exception mail to be sent out.
+[30-09-2021 00:48:29][INFO][ExceptionNotifier.task][22] Sending exception email to business

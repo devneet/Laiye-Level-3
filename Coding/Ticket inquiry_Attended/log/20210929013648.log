@@ -1,0 +1,36 @@
+[29-09-2021 01:36:48][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 01:36:48][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[29-09-2021 01:36:48][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 01:37:14][INFO][Initialization.task][47] Setting up the output report file path
+[29-09-2021 01:37:14][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[29-09-2021 01:37:14][INFO][Initialization.task][65] Checking if Office is installed
+[29-09-2021 01:37:14][INFO][Initialization.task][74] Setting up credential values in the output report
+[29-09-2021 01:37:15][INFO][Initialization.task][83] Calling OpenExchange API for determining exchange rate.
+[29-09-2021 01:37:18][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[29-09-2021 01:37:18][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Trip Data
+[29-09-2021 01:37:18][INFO][GetTripData.task][25] Open Chrome browser and enter the Trip webpage
+[29-09-2021 01:37:30][INFO][GetTripData.task][32] The webpage window is maximized
+[29-09-2021 01:37:41][INFO][GetTripData.task][37] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 01:37:41][INFO][GetTripData.task][51] Entering the search parameters for Trip
+[29-09-2021 01:38:20][ERROR][GetTripData.task][181] Application exception, failed to open extract data from Trip website:{
+	"File" : "GetTripData.task",
+	"Line" : 72,
+	"Message" : " Call error occurred in Module Mouse.MouseAuto. Action:Exception has been thrown by the target of an invocation.\nException in Mouse.Action,Element not found",
+	"_InternalState_" : 1
+}
+[29-09-2021 01:38:20][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Business Exception?”The result is true
+[29-09-2021 01:38:20][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Retry?”The result is true
+[29-09-2021 01:38:20][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Process Cleanup
+[29-09-2021 01:38:20][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 01:38:45][INFO][Initialization.task][47] Setting up the output report file path
+[29-09-2021 01:38:45][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[29-09-2021 01:38:45][INFO][Initialization.task][65] Checking if Office is installed
+[29-09-2021 01:38:46][INFO][Initialization.task][74] Setting up credential values in the output report
+[29-09-2021 01:38:47][INFO][Initialization.task][83] Calling OpenExchange API for determining exchange rate.
+[29-09-2021 01:38:49][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[29-09-2021 01:38:49][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Trip Data
+[29-09-2021 01:38:49][INFO][GetTripData.task][25] Open Chrome browser and enter the Trip webpage
+[29-09-2021 01:39:01][INFO][GetTripData.task][32] The webpage window is maximized
+[29-09-2021 01:39:14][INFO][GetTripData.task][37] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 01:39:14][INFO][GetTripData.task][51] Entering the search parameters for Trip
+[29-09-2021 01:39:45][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

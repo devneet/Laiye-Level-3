@@ -1,0 +1,23 @@
+[28-09-2021 00:04:06][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[28-09-2021 00:04:06][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[28-09-2021 00:04:06][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[28-09-2021 00:04:27][INFO][Initialization.task][47] Setting up the output report file path
+[28-09-2021 00:04:27][INFO][Initialization.task][65] Checking if Office is installed
+[28-09-2021 00:04:29][INFO][Initialization.task][74] Setting up credential values in the output report
+[28-09-2021 00:04:30][WARN][Initialization.task][82] Killing running chrome processes as a part of initial cleanup
+[28-09-2021 00:04:30][WARN][Initialization.task][86] Killing running chrome processes as a part of initial cleanup
+[28-09-2021 00:04:30][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[28-09-2021 00:04:30][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[28-09-2021 00:04:30][INFO][GetChinaSouthernAirlinesData.task][19] Open Chrome browser and enter the China Southern Airlines webpage
+[28-09-2021 00:04:35][INFO][GetChinaSouthernAirlinesData.task][26] The webpage window is maximized
+[28-09-2021 00:04:56][INFO][GetChinaSouthernAirlinesData.task][31] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 00:04:57][INFO][GetChinaSouthernAirlinesData.task][47] Entering the search parameters for China Southern Airlines
+[28-09-2021 00:05:01][INFO][GetChinaSouthernAirlinesData.task][67] Waiting for the search results to load
+[28-09-2021 00:06:02][INFO][GetChinaSouthernAirlinesData.task][71] The page load return value is: 0 (success:1,failure:0)
+[28-09-2021 00:06:02][ERROR][GetChinaSouthernAirlinesData.task][77] Page loading exception. Server seems to be down while searching results on China Southern Airlines webpage.
+[28-09-2021 00:06:02][WARN][GetChinaSouthernAirlinesData.task][80] Killing running chrome processes as a part of initial cleanup
+[28-09-2021 00:06:02][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Business Exception?”The result is true
+[28-09-2021 00:06:02][ERROR][Air_Ticket_Enquiry_Process.flow][9] Error running, and process aborted 
+Error message as following:
+Air_Ticket_Enquiry_Process.flow line 9:  attempt to compare number with null
+[28-09-2021 00:06:02][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

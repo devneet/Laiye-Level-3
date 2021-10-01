@@ -1,0 +1,214 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 29th,2021
+Extract Trip Data module
+10. Open Trip webpage
+11. Enter the flight search parameters
+12. Capture the search results
+*/
+
+TracePrint "——————Enter the Trip data capture module——————"
+
+Try
+	
+	Dim hWeb = "" 
+	Dim iExists = ""
+	Dim sCmdOutput = "" 
+	Dim sMessage = ""
+	Dim arrayData = []
+	Dim arrCurrentData = []
+	Dim dEconomyPrice = 0.0
+	Dim g_hWeb = ""
+	Dim nSlNo = 0
+	Dim sAirlineCompany = ""
+	Dim sArrivalAirport = ""
+	Dim sArrivalDate = ""
+	Dim sArrivalTime = ""
+	Dim sDateToSelect = ""
+	Dim sDepartureAirport = ""
+	Dim sDepartureDate = ""
+	Dim sDepartureTime = ""
+	Dim sFlightName = ""
+	Dim sFlightNo = ""
+	Dim sDayToBeSelected = ""
+	Dim sMonthYearOfDeparture = ""
+	
+	// Open the Trip website
+	
+	Log.Info("Open Chrome browser and enter the Trip webpage")
+	g_hWeb = WebBrowser.Create("chrome",g_dictGlobal["TripURL"],CInt(g_dictGlobal["TimeoutXL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayS"]),"sBrowserPath":"","sStartArgs":""})
+	
+	// Set window maximized
+	
+	#icon("@res:pos8blgg-p19n-lsgt-6h96-7dfjt1ctcef3.png")
+	Window.Show({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*Google Chrome","app":"chrome"}]},"max")
+	Log.Info("The webpage window is maximized")
+	
+	// Wait for the page to load
+	#icon("@res:psneaiqq-7bk8-t0q7-u7of-qck7q042hbcu.png")
+	iExists = WebBrowser.WaitPage(g_hWeb,{"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"A","aaname":"Trip.com"}]},30000,{"bContinueOnError":False,"iDelayAfter":3000,"iDelayBefore":200})
+	Log.Info("The page load return value is: " & CStr(iExists) & " (success:1,failure:0)")
+	
+	// Determine whether the page element exists
+	
+	If iExists = 0
+		
+		Log.Error("Page loading exception. Server seems to be down while accessing Trip webpage.")
+		g_dictGlobal["isEx"] = True
+		Throw "Page loading exception. Server seems to be down while accessing Trip webpage."
+		
+	Else	
+		
+		// Entering search parameters
+		
+		Log.Info("Entering the search parameters for Trip")
+		Delay(CInt(g_dictGlobal["DelayS"]))
+		#icon("@res:bg6vq8oe-at43-dv99-4v4s-jng4probupgu.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"DIV","class":"mc-hd__country-cur mc-hd__dropdown-cur mc-hd__dropdown-triangle"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:fnsddipc-f3pp-6s7t-8dj7-3p77t1e9kavl.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","aaname":"English (United States)"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayM"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:m1tem8nv-p2b5-4gqt-18f9-i653gl763sgi.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"DIV","class":"mc-hd__dropdown-cur mc-hd__currency-cur mc-hd__dropdown-triangle"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayM"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:snibr0l5-35cu-p8u6-sb0b-ph2bf0tppkra.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","aaname":"USD"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:pjoo3tpf-aipn-eeer-rknq-lo2apkausiac.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","aaname":"Flights"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:biv7md6b-v0ja-9op3-8qgl-qppbbrqvej3m.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"I","data-testid":"tripType_dropDown"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:bbesmdec-slo6-6u82-hv2j-6bv4l4snto3j.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","aaname":"One-way"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:dq7rcvs5-93qj-15pb-juo2-st77nfj42j2l.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"I","data-testid":"cityLabel_delete_0"}]},"left","click",CInt(g_dictGlobal["TimeoutS"]),{"bContinueOnError":True,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		
+		#icon("@res:op274c8j-uod5-9v55-gqh1-fvfkn6f06iot.png")
+		Keyboard.InputText({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","type":"text","data-testid":"search_city_from0"}]},g_dictGlobal["PlaceOfDeparture"],True,20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sSimulate":"message","bValidate":False,"bClickBeforeInput":True})
+		#icon("@res:uduiupeu-rg6m-jsa1-s266-4nlot0nhlhoo.png")
+		Keyboard.PressKey({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","type":"text","data-testid":"search_city_from0"}]},"Enter",20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sKeyModifiers":[],"sSimulate":"simulate","bClickBeforeInput":False})
+		#icon("@res:mqpoqbg3-0h98-ae1f-d18m-vie5f3jrrfn1.png")
+		Keyboard.InputText({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","type":"text","data-testid":"search_city_to0"}]},g_dictGlobal["PlaceOfArrival"],True,20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sSimulate":"message","bValidate":False,"bClickBeforeInput":True})
+		#icon("@res:sfoppb3v-puje-i8n5-lss8-okltk6p9q79g.png")
+		Keyboard.PressKey({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","type":"text","data-testid":"search_city_to0"}]},"Tab",20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sKeyModifiers":[],"sSimulate":"message","bClickBeforeInput":False})
+		#icon("@res:9lipac92-hv29-3vdt-93sf-4pco46qc5hi3.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","type":"text","data-testid":"search_date_return0"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":True,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"uia","bMoveSmoothly":False})
+		#icon("@res:nrqmr108-s36i-a5hb-3s4e-cbeacgv6hrc8.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","parentid":"searchBoxCon","isleaf":"1","class":"c-calendar-icon-prev"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":True,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"uia","bMoveSmoothly":False})
+		
+		sDayToBeSelected = CStr(CInt(Time.Format(Time.DateAdd("d",0,Time.Date()),"dd")))
+		#icon("@res:4g2jukrh-sdd8-5kva-flla-50ga2so1ls7u.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","class":"day","idx":sDayToBeSelected}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		
+		#icon("@res:odfjkbao-0p01-330i-l46d-lt8s7k8vvvhl.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"I","parentid":"searchBoxCon","class":"showInPC fi-icon fi-icon_search_line"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		
+		// Wait for the search results to load
+		
+		Log.Info("Waiting for the search results to load")
+		
+		
+		#icon("@res:8j13u81a-rgqc-5k9g-t5iv-16v99rsr1rs0.png")
+		iExists = WebBrowser.WaitPage(g_hWeb,{"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"DIV","parentid":"main","css-selector":"body>div>div>div>div>div>div>div","idx":3}]},CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"])})
+		Log.Info("The page load return value is: " & CStr(iExists) & " (success:1,failure:0)")
+		
+		
+		// Determine whether the exception message exists
+		
+		#icon("@res:9o5eh13d-u5kl-i8fb-a7rg-cg5n6pc0f760.png")
+		sMessage = Text.Get({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","parentid":"main","isleaf":"1"}]},CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":True,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True})
+		
+		If InStr(sMessage,"Please note that due to COVID-19, many airlines have reduced operations. Available flights are limited. Thank you for your understanding.",0,False) > 0
+			
+			Log.Error("Page loading exception. No search results found while searching results on Trip webpage.")
+			g_dictGlobal["isEx"] = True
+			Throw "Page loading exception. No search results found while searching results on Trip webpage."
+			
+		Else
+			
+			// Extract flight details from search results
+			
+			Log.Info("Extracting flight details from the Trip webpage.")
+			
+			arrayData = UiElement.DataScrap({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"DIV","id":"J_resultList"}]},{"ExtractTable":0,"Columns":[{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"result-item-hd u-clearfix","value":"div.result-item-hd.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"result-item-table","value":"div.result-item-table","prefix":">"},{"tag":"div","index":0,"className":"c-result-airline result-airline","value":"div.c-result-airline.result-airline","prefix":">"},{"tag":"div","index":0,"className":"c-result-airline__wrap","value":"div.c-result-airline__wrap","prefix":">"},{"tag":"div","index":0,"className":"name c-result-airline__name","value":"div.name.c-result-airline__name","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"result-item-hd u-clearfix","value":"div.result-item-hd.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"result-item-table","value":"div.result-item-table","prefix":">"},{"tag":"div","index":0,"className":"c-result-airline result-airline","value":"div.c-result-airline.result-airline","prefix":">"},{"tag":"div","index":0,"className":"c-result-airline__wrap","value":"div.c-result-airline__wrap","prefix":">"},{"tag":"div","index":2,"className":"","value":"div:nth-child(2)","prefix":">"},{"tag":"div","index":0,"className":"j_model c-result-airline__flight-num","value":"div.j_model.c-result-airline__flight-num","prefix":">"},{"tag":"span","index":0,"className":"craft-item","value":"span.craft-item","prefix":">"},{"tag":"span","index":0,"className":"flightNo","value":"span.flightNo","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"result-item-hd u-clearfix","value":"div.result-item-hd.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"result-item-table","value":"div.result-item-table","prefix":">"},{"tag":"div","index":0,"className":"flight-time c-result-period result-period","value":"div.flight-time.c-result-period.result-period","prefix":">"},{"tag":"div","index":0,"className":"time-cell depart-cell  c-result-period__cell","value":"div.time-cell.depart-cell.c-result-period__cell","prefix":">"},{"tag":"div","index":0,"className":"c-result-period__depart","value":"div.c-result-period__depart","prefix":">"},{"tag":"div","index":0,"className":"code  c-result-period__code bod-bottom-dotted","value":"div.code.c-result-period__code.bod-bottom-dotted","prefix":">"},{"tag":"span","index":0,"className":"c","value":"span.c","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"result-item-hd u-clearfix","value":"div.result-item-hd.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"result-item-table","value":"div.result-item-table","prefix":">"},{"tag":"div","index":0,"className":"flight-time c-result-period result-period","value":"div.flight-time.c-result-period.result-period","prefix":">"},{"tag":"div","index":0,"className":"time-cell arrive-cell c-result-period__cell arrive-time","value":"div.time-cell.arrive-cell.c-result-period__cell.arrive-time","prefix":">"},{"tag":"div","index":0,"className":"c-result-period__arrive","value":"div.c-result-period__arrive","prefix":">"},{"tag":"div","index":0,"className":"code c-result-period__code bod-bottom-dotted","value":"div.code.c-result-period__code.bod-bottom-dotted","prefix":">"},{"tag":"span","index":0,"className":"c","value":"span.c","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"result-item-hd u-clearfix","value":"div.result-item-hd.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"result-item-table","value":"div.result-item-table","prefix":">"},{"tag":"div","index":0,"className":"flight-time c-result-period result-period","value":"div.flight-time.c-result-period.result-period","prefix":">"},{"tag":"div","index":0,"className":"time-cell depart-cell  c-result-period__cell","value":"div.time-cell.depart-cell.c-result-period__cell","prefix":">"},{"tag":"div","index":0,"className":"c-result-period__depart","value":"div.c-result-period__depart","prefix":">"},{"tag":"div","index":0,"className":"time  c-result-period__time","value":"div.time.c-result-period__time","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"result-item-hd u-clearfix","value":"div.result-item-hd.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"result-item-table","value":"div.result-item-table","prefix":">"},{"tag":"div","index":0,"className":"flight-time c-result-period result-period","value":"div.flight-time.c-result-period.result-period","prefix":">"},{"tag":"div","index":0,"className":"time-cell arrive-cell c-result-period__cell arrive-time","value":"div.time-cell.arrive-cell.c-result-period__cell.arrive-time","prefix":">"},{"tag":"div","index":0,"className":"c-result-period__arrive","value":"div.c-result-period__arrive","prefix":">"},{"tag":"div","index":0,"className":"time c-result-period__time ","value":"div.time.c-result-period__time","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"item-bodys result-item-con","value":"div.item-bodys.result-item-con","prefix":">"},{"tag":"div","index":1,"className":"result-item-con-list","value":"div:nth-child(1)","prefix":">"},{"tag":"div","index":0,"className":"result-item-con-status","value":"div.result-item-con-status","prefix":">"},{"tag":"div","index":0,"className":"result-status-item u-clearfix","value":"div.result-status-item.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"item-con-cell result-item-price","value":"div.item-con-cell.result-item-price","prefix":">"},{"tag":"div","index":0,"className":"item-con-price","value":"div.item-con-price","prefix":">"},{"tag":"span","index":0,"className":"o-price-flight","value":"span.o-price-flight","prefix":">"},{"tag":"em","index":0,"className":"o-price-flight__num","value":"em.o-price-flight__num","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","value":"div","index":0,"prefix":""},{"tag":"div","index":0,"className":"result-item J_FlightItem","value":"div.result-item.J_FlightItem","prefix":">"},{"tag":"div","index":0,"className":"item-bodys result-item-con","value":"div.item-bodys.result-item-con","prefix":">"},{"tag":"div","index":2,"className":"result-item-con-list","value":"div:nth-child(2)","prefix":">"},{"tag":"div","index":0,"className":"result-item-con-status","value":"div.result-item-con-status","prefix":">"},{"tag":"div","index":0,"className":"result-status-item u-clearfix","value":"div.result-status-item.u-clearfix","prefix":">"},{"tag":"div","index":0,"className":"item-con-cell result-item-price","value":"div.item-con-cell.result-item-price","prefix":">"},{"tag":"div","index":0,"className":"item-con-price","value":"div.item-con-price","prefix":">"},{"tag":"span","index":0,"className":"o-price-flight","value":"span.o-price-flight","prefix":">"},{"tag":"em","index":0,"className":"o-price-flight__num","value":"em.o-price-flight__num","prefix":">"}],"props":["text"]}]},{"objNextLinkElement":"","iMaxNumberOfPage":5,"iMaxNumberOfResult":-1,"iDelayBetweenMS":CInt(g_dictGlobal["DelayS"]),"bContinueOnError":False})
+			
+			// Creating Trip Data Array
+			Log.Info("Creating trip data array.")
+			
+			nSlNo =0
+			
+			For Each item In arrayData
+				
+				nSlNo = nSlNo+1
+				
+				sFlightName = "Trip"
+				
+				sAirlineCompany = item[0]
+				
+				sFlightNo = item[1]
+				
+				sDepartureTime = item[4]
+				If InStr(sDepartureTime,"+1Days",0,False) > 0
+					
+					sDepartureDate = Time.Format(Time.DateAdd("d",1,Time.Date()),"mm/dd/yyyy") & " " &  sDepartureTime
+					
+				Else
+					
+					sDepartureDate = Time.Format(Time.Date(),"mm/dd/yyyy") & " " &  sDepartureTime
+					
+				End If
+				
+				sDepartureAirport = item[2]
+				
+				sArrivalTime = item[5]
+				If InStr(sArrivalTime,"+1Days",0,False) > 0
+					
+					sArrivalDate = Time.Format(Time.DateAdd("d",1,Time.Date()),"mm/dd/yyyy") & " " &  sArrivalTime
+					
+				Else
+					
+					sArrivalDate = Time.Format(Time.Date(),"mm/dd/yyyy") & " " &  sArrivalTime
+					
+				End If
+				
+				sArrivalAirport = item[3]
+				
+				If item[6] = "--"
+					
+					dEconomyPrice = 0.00
+					
+				Else
+					
+					dEconomyPrice = Math.Round(CNumber(item[6]),2)
+					
+				End If
+				
+				arrCurrentData = [nSlNo,sFlightName,sAirlineCompany,sFlightNo,sDepartureDate,sArrivalDate,dEconomyPrice,sDepartureAirport,sArrivalAirport]
+				
+				g_arrTripData = push(g_arrTripData,arrCurrentData)
+				
+				arrCurrentData = []
+				
+			Next
+			
+			// Closing the web page
+			
+			Log.Warn("Killing running chrome processes as a part of initial cleanup")
+			sCmdOutput = Sys.Command("TASKKILL /IM chrome.exe /F ")
+			
+			
+		End If
+		
+	End If
+	
+Catch Ex
+	
+	g_dictGlobal["isEx"] = True
+	Log.Error("Application exception, failed to open extract data from Trip website:" & CStr(Ex))
+	g_dictGlobal["ExceptionDetails"] = {}
+	g_dictGlobal["ExceptionDetails"]["Block"] = Ex["File"]
+	g_dictGlobal["ExceptionDetails"]["Line"]  = Ex["Line"]
+	g_dictGlobal["ExceptionDetails"]["Message"] = Ex["Message"]
+	
+End Try
+
+TracePrint "——————Exit Trip data capture module——————"
+
+

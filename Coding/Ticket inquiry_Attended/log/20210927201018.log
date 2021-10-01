@@ -1,0 +1,6 @@
+[27-09-2021 20:10:18][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[27-09-2021 20:10:18][INFO][Initialization.task][0] Process Initialization.task start running
+[27-09-2021 20:10:18][ERROR][Initialization.task][13] Error running, and process aborted 
+Error message as following:
+Initialization.task line 13:  attempt to perform arithmetic on a null value (field 'G_IRETRYNUM')
+[27-09-2021 20:10:18][INFO][Initialization.task][0] Initialization.task End of running

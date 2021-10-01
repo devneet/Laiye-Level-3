@@ -1,0 +1,7 @@
+[30-09-2021 02:23:18][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Attended\
+[30-09-2021 02:23:18][INFO][Selected content][0] Process Selected content start running
+[30-09-2021 02:23:31][ERROR][Selected content][1] Error running, and process aborted 
+Error message as following:
+Selected content line 1:  Call error occurred in Module Mouse.MouseAuto. Action:Exception has been thrown by the target of an invocation.
+Exception in Mouse.Action,Element not found
+[30-09-2021 02:23:31][INFO][Selected content][0] Selected content End of running

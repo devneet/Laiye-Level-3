@@ -1,0 +1,46 @@
+[30-09-2021 01:13:59][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Attended\
+[30-09-2021 01:13:59][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Process Air_Ticket_Enquiry_Process_Attended.flow start running
+[30-09-2021 01:13:59][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 01:13:59][INFO][Initialization.task][36] Checking if configuration file exists
+[30-09-2021 01:13:59][INFO][Initialization.task][48] Fetching configuration details
+[30-09-2021 01:14:01][INFO][Initialization.task][50] Configuration details fetched successfully
+[30-09-2021 01:14:01][INFO][Initialization.task][55] Setting up the output report file path
+[30-09-2021 01:14:01][INFO][Initialization.task][59] Cleaning up all applications
+[30-09-2021 01:14:01][INFO][Initialization.task][71] Fetching credentials details from Windows Credential Manager
+[30-09-2021 01:14:01][INFO][Initialization.task][73] Credentials details fetched successfully from Windows Credential Manager
+[30-09-2021 01:14:01][WARN][Initialization.task][81] Deleting the output report file as it already exists
+[30-09-2021 01:14:01][INFO][Initialization.task][88] Checking if Office is installed
+[30-09-2021 01:14:02][INFO][Initialization.task][97] Setting up credential values in the output report
+[30-09-2021 01:14:03][INFO][Initialization.task][106] Calling OpenExchange API for determining exchange rate.
+[30-09-2021 01:14:05][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Exception？”The result is false
+[30-09-2021 01:14:05][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Get Southern Data
+[30-09-2021 01:14:05][INFO][GetChinaSouthernAirlinesData.task][36] Open Chrome browser and enter the China Southern Airlines webpage
+[30-09-2021 01:14:12][INFO][GetChinaSouthernAirlinesData.task][43] The webpage window is maximized
+[30-09-2021 01:14:28][INFO][GetChinaSouthernAirlinesData.task][48] The page load return value is: 1 (success:1,failure:0)
+[30-09-2021 01:14:28][INFO][GetChinaSouthernAirlinesData.task][63] Entering the search parameters for China Southern Airlines
+[30-09-2021 01:14:38][INFO][GetChinaSouthernAirlinesData.task][86] Waiting for the search results to load
+[30-09-2021 01:14:52][INFO][GetChinaSouthernAirlinesData.task][94] The page load return value is: 1 (success:1,failure:0)
+[30-09-2021 01:14:59][INFO][GetChinaSouthernAirlinesData.task][115] Extracting flight details from the China Southern Airlines webpage.
+[30-09-2021 01:14:59][INFO][GetChinaSouthernAirlinesData.task][120] Creating southern airlines data array.
+[30-09-2021 01:14:59][WARN][GetChinaSouthernAirlinesData.task][180] Closing chinese southern airlines webpage
+[30-09-2021 01:14:59][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Business Exception?”The result is false
+[30-09-2021 01:14:59][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Get Eastern Data
+[30-09-2021 01:14:59][INFO][GetChinaEasternAirlinesData.task][38] Open Chrome browser and enter the China Eastern Airlines webpage
+[30-09-2021 01:15:01][INFO][GetChinaEasternAirlinesData.task][45] The webpage window is maximized
+[30-09-2021 01:15:13][INFO][GetChinaEasternAirlinesData.task][50] The page load return value is: 1 (success:1,failure:0)
+[30-09-2021 01:15:13][INFO][GetChinaEasternAirlinesData.task][65] Entering the search parameters for China Eastern Airlines
+[30-09-2021 01:15:30][ERROR][GetChinaEasternAirlinesData.task][214] Application exception, failed to open extract data from China Eastern Airlines website:{
+	"File" : "GetChinaEasternAirlinesData.task",
+	"Line" : 83,
+	"Message" : " Call error occurred in Module Mouse.MouseAuto. Action:Exception has been thrown by the target of an invocation.\nException in Mouse.Action,Element not found",
+	"_InternalState_" : 1
+}
+[30-09-2021 01:15:30][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Business Exception?”The result is true
+[30-09-2021 01:15:30][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Retry?”The result is true
+[30-09-2021 01:15:30][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 01:15:30][INFO][Initialization.task][36] Checking if configuration file exists
+[30-09-2021 01:15:30][INFO][Initialization.task][48] Fetching configuration details
+[30-09-2021 01:15:31][INFO][Initialization.task][50] Configuration details fetched successfully
+[30-09-2021 01:15:31][INFO][Initialization.task][55] Setting up the output report file path
+[30-09-2021 01:15:31][INFO][Initialization.task][59] Cleaning up all applications
+[30-09-2021 01:15:32][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Air_Ticket_Enquiry_Process_Attended.flow End of running

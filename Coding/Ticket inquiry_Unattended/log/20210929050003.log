@@ -1,0 +1,7 @@
+[29-09-2021 05:00:03][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 05:00:03][INFO][GetChinaEasternAirlinesData.task][0] Process GetChinaEasternAirlinesData.task start running
+[29-09-2021 05:00:04][INFO][GetChinaEasternAirlinesData.task][23] Open Chrome browser and enter the China Eastern Airlines webpage
+[29-09-2021 05:00:04][ERROR][GetChinaEasternAirlinesData.task][188] Error running, and process aborted 
+Error message as following:
+GetChinaEasternAirlinesData.task line 188: Only array or dictionary type can be indexed
+[29-09-2021 05:00:04][INFO][GetChinaEasternAirlinesData.task][0] GetChinaEasternAirlinesData.task End of running

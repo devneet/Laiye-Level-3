@@ -1,0 +1,11 @@
+[30-09-2021 00:41:19][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Attended\
+[30-09-2021 00:41:19][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Process Air_Ticket_Enquiry_Process_Attended.flow start running
+[30-09-2021 00:41:19][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 00:41:19][INFO][Initialization.task][38] Checking if configuration file exists
+[30-09-2021 00:41:19][INFO][Initialization.task][50] Fetching configuration details
+[30-09-2021 00:41:21][INFO][Initialization.task][52] Configuration details fetched successfully
+[30-09-2021 00:41:21][INFO][Initialization.task][57] Setting up the output report file path
+[30-09-2021 00:41:21][INFO][Initialization.task][61] Cleaning up all applications
+[30-09-2021 00:41:21][INFO][Initialization.task][73] Fetching credentials details from Windows Credential Manager
+[30-09-2021 00:41:21][INFO][Initialization.task][75] Credentials details fetched successfully from Windows Credential Manager
+[30-09-2021 00:41:33][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Air_Ticket_Enquiry_Process_Attended.flow End of running

@@ -1,0 +1,7 @@
+[30-09-2021 02:28:00][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Attended\
+[30-09-2021 02:28:00][INFO][Block.task][0] Process Block.task start running
+[30-09-2021 02:28:13][ERROR][Block.task][5] Error running, and process aborted 
+Error message as following:
+Block.task line 5:  Call error occurred in Module Mouse.MouseAuto. Action:Exception has been thrown by the target of an invocation.
+Exception in Mouse.Action,Element not found
+[30-09-2021 02:28:13][INFO][Block.task][0] Block.task End of running

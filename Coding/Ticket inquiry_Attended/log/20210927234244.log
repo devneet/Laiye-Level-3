@@ -1,0 +1,17 @@
+[27-09-2021 23:42:44][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[27-09-2021 23:42:44][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[27-09-2021 23:42:44][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[27-09-2021 23:43:05][INFO][Initialization.task][47] Setting up the output report file path
+[27-09-2021 23:43:05][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[27-09-2021 23:43:05][INFO][Initialization.task][65] Checking if Office is installed
+[27-09-2021 23:43:07][INFO][Initialization.task][74] Setting up credential values in the output report
+[27-09-2021 23:43:08][WARN][Initialization.task][82] Killing running chrome processes as a part of initial cleanup
+[27-09-2021 23:43:08][WARN][Initialization.task][86] Killing running chrome processes as a part of initial cleanup
+[27-09-2021 23:43:08][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[27-09-2021 23:43:08][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[27-09-2021 23:43:08][INFO][GetChinaSouthernAirlinesData.task][18] Open Chrome browser and enter the China Southern Airlines webpage
+[27-09-2021 23:43:14][INFO][GetChinaSouthernAirlinesData.task][25] The webpage window is maximized
+[27-09-2021 23:43:23][INFO][GetChinaSouthernAirlinesData.task][30] The page load return value is: 1 (success:1,failure:0)
+[27-09-2021 23:43:23][INFO][GetChinaSouthernAirlinesData.task][44] Entering the search parameters for China Southern Airlines
+[27-09-2021 23:43:27][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Business Exception?”The result is false
+[27-09-2021 23:43:27][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

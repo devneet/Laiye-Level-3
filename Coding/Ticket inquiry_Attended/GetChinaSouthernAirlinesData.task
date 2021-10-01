@@ -1,0 +1,200 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 27th,2021
+Extract China Southern Airlines Data module
+4. Open China Southern Airlines webpage
+5. Enter the flight search parameters
+6. Capture the search results
+*/
+
+TracePrint "——————Enter the China southern airlines data capture module——————"
+
+Try
+	
+	Dim hWeb = "" 
+	Dim iExists = ""
+	Dim sCmdOutput = "" 
+	Dim sMessage = ""
+    Dim dEconomyPrice = 0.0
+    Dim g_hWeb = ""
+    Dim nSlNo = 0
+    Dim sAirlineCompany = ""
+    Dim sArrivalAirport = ""
+    Dim sArrivalDate = ""
+    Dim sArrivalTime = ""
+    Dim sDateToSelect = ""
+    Dim sDepartureAirport = ""
+    Dim sDepartureDate = ""
+    Dim sDepartureTime = ""
+    Dim sFlightName = ""
+    Dim sFlightNo = ""
+	Dim arrayData = []
+	Dim arrCurrentData = []
+	
+	// Open the China Southern Airlines website
+	
+	Log.Info("Open Chrome browser and enter the China Southern Airlines webpage")
+	g_hWeb = WebBrowser.Create("chrome",g_dictGlobal["ChinaSouthernAirlinesURL"],CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayM"]),"sBrowserPath":"","sStartArgs":""})
+	
+	// Set window maximized
+	
+	#icon("@res:ai7ocp7u-0h9t-bn66-r0a6-5h0rvcso3n5s.png")
+	Window.Show({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*Google Chrome","app":"chrome"}]},"max")
+	Log.Info("The webpage window is maximized")
+	
+	// Wait for the page to load
+	#icon("@res:5ip2u918-k5j3-utga-0j74-qfhtna1ur7dm.png")
+	iExists = WebBrowser.WaitPage(g_hWeb,{"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"A"}]},CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"])})
+	Log.Info("The page load return value is: " & CStr(iExists) & " (success:1,failure:0)")
+	
+	// Determine whether the page element exists
+	
+	If iExists = 0
+		
+		Log.Error("Page loading exception. Server seems to be down while accessing China Southern Airlines webpage.")
+		g_dictGlobal["isEx"] = True
+		Throw "Page loading exception. Server seems to be down while accessing China Southern Airlines webpage."
+		
+		
+	Else	
+		
+		// Entering search parameters
+		
+		Log.Info("Entering the search parameters for China Southern Airlines")
+		Delay(CInt(g_dictGlobal["DelayS"]))
+		#icon("@res:rbebvlt4-i6ge-1u8h-70q3-fnveuk2bd2iv.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"A","parentid":"commonbox","aaname":"One-way"}]},"left","click",CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		#icon("@res:8t7t6r52-qkri-l49u-60g8-uvobem1cd7o8.png")
+		Keyboard.InputText({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"fDepCity"}]},g_dictGlobal["PlaceOfDeparture"],True,20,CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sSimulate":"message","bValidate":False,"bClickBeforeInput":False})
+		#icon("@res:4gtnq09u-5kd1-at04-cad2-bvi5cnmlkiif.png")
+		Keyboard.InputText({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"fArrCity"}]},g_dictGlobal["PlaceOfArrival"],True,20,CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sSimulate":"message","bValidate":False,"bClickBeforeInput":False})
+		#icon("@res:bg2nakc8-cl4n-d9a0-hrdu-2gtuibjnqq6t.png")
+		Keyboard.PressKey({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"fArrCity"}]},"Tab",20,CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sKeyModifiers":[],"sSimulate":"simulate","bClickBeforeInput":False})
+		#icon("@res:ng9l6qi3-ea3o-7dv1-jhdm-j0au86711gvs.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"fDepDate"}]},"left","click",CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		
+		sDateToSelect = Time.Format(Time.DateAdd("d",1,Time.Date()),"yyyy-mm-dd")
+		
+		#icon("@res:6ig9rtku-m7cb-riel-pgaa-ohjr44gikgi2.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"LI","data-value":sDateToSelect}]},"left","click",10000,{"bContinueOnError":False,"iDelayAfter":300,"iDelayBefore":200,"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		
+		#icon("@res:e85gnkcl-v889-9knh-7jkp-1deoqdko6k7q.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"A","parentid":"commonbox","aaname":" Search "}]},"left","click",CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		
+		// Wait for the search results to load
+		
+		Log.Info("Waiting for the search results to load")
+		
+		iExists = True
+		
+		Do While iExists = True
+			
+			#icon("@res:gll9bgk6-58in-9mfr-6mmq-r55eag3l10i9.png")
+			iExists = WebBrowser.WaitPage(g_hWeb,{"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"H2"}]},CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"])})
+			Log.Info("The page load return value is: " & CStr(iExists) & " (success:1,failure:0)")
+			
+		Loop
+		
+		
+		// Determine whether the exception message exists
+		
+		#icon("@res:78b2lg46-ceef-kqf3-v5gb-4j5rcgkcgqm0.png")
+		sMessage = Text.Get({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"SPAN","parentid":"zls-common","css-selector":"body>div>div>div>span"}]},CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":True,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True})
+		
+		If InStr(sMessage,"There are currently no available flights for your selected dates",0,False) > 0
+			
+			Log.Error("Page loading exception. No search results found while searching results on China Southern Airlines webpage.")
+			g_dictGlobal["isEx"] = True
+			Throw "Page loading exception. No search results found while searching results on China Southern Airlines webpage."
+			
+			
+		Else
+			
+			// Extract flight details from search results
+			
+			Log.Info("Extracting flight details from the China Southern Airlines webpage.")
+			arrayData = UiElement.DataScrap({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"DIV","id":"zls-common"}]},{"ExtractTable":0,"Columns":[{"selecors":[{"tag":"div","index":0,"className":"zls-flightInfoShow","value":"div.zls-flightInfoShow","prefix":""},{"tag":"div","index":0,"className":"zls-flight","value":"div.zls-flight","prefix":">"},{"tag":"ul","index":0,"className":"zls-flg-ui","value":"ul.zls-flg-ui","prefix":">"},{"tag":"li","value":"li","index":0,"prefix":">"},{"tag":"div","index":0,"className":"fligthL","value":"div.fligthL","prefix":">"},{"tag":"div","index":0,"className":"zls-flgno","value":"div.zls-flgno","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","index":0,"className":"zls-flightInfoShow","value":"div.zls-flightInfoShow","prefix":""},{"tag":"div","index":0,"className":"zls-flight","value":"div.zls-flight","prefix":">"},{"tag":"ul","index":0,"className":"zls-flg-ui","value":"ul.zls-flg-ui","prefix":">"},{"tag":"li","value":"li","index":0,"prefix":">"},{"tag":"div","index":0,"className":"fligthL","value":"div.fligthL","prefix":">"},{"tag":"div","index":0,"className":"zls-flgtime zls-flgtime-r zls-flgtime-dep","value":"div.zls-flgtime.zls-flgtime-r.zls-flgtime-dep","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","index":0,"className":"zls-flightInfoShow","value":"div.zls-flightInfoShow","prefix":""},{"tag":"div","index":0,"className":"zls-flight","value":"div.zls-flight","prefix":">"},{"tag":"ul","index":0,"className":"zls-flg-ui","value":"ul.zls-flg-ui","prefix":">"},{"tag":"li","value":"li","index":0,"prefix":">"},{"tag":"div","index":0,"className":"fligthL","value":"div.fligthL","prefix":">"},{"tag":"div","index":0,"className":"zls-flgtime zls-flgtime-arr","value":"div.zls-flgtime.zls-flgtime-arr","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"div","index":0,"className":"zls-flightInfoShow","value":"div.zls-flightInfoShow","prefix":""},{"tag":"div","index":0,"className":"zls-flight","value":"div.zls-flight","prefix":">"},{"tag":"ul","index":0,"className":"zls-flg-ui","value":"ul.zls-flg-ui","prefix":">"},{"tag":"li","value":"li","index":0,"prefix":">"},{"tag":"div","index":0,"className":"fligthR","value":"div.fligthR","prefix":">"},{"tag":"ul","index":0,"className":"","value":"ul","prefix":">"},{"tag":"li","index":4,"className":"zls-cabin-cell","value":"li:nth-child(4)","prefix":">"}],"props":["text"]}]},{"objNextLinkElement":"","iMaxNumberOfPage":5,"iMaxNumberOfResult":-1,"iDelayBetweenMS":CInt(g_dictGlobal["TimeoutM"]),"bContinueOnError":False})
+			
+			
+			// Creating Southern Airlines Data Array
+			Log.Info("Creating southern airlines data array.")
+			
+			nSlNo =0
+			
+			For Each item In arrayData
+				
+				nSlNo = nSlNo+1
+				
+				sFlightName = "China Southern Airlines"
+				
+				sAirlineCompany = "China Southern Airlines"
+				
+				sFlightNo = Split(item[0],"\n")[0]
+				
+				sDepartureTime = Split(item[1],"\n")[0]
+				If InStr(sDepartureTime,"+1Day",0,False) > 0
+					
+					sDepartureDate = Time.Format(Time.DateAdd("d",1,Time.Date()),"mm/dd/yyyy") & " " &  sDepartureTime
+					
+				Else
+					
+					sDepartureDate = Time.Format(Time.Date(),"mm/dd/yyyy") & " " &  sDepartureTime
+					
+				End If
+				
+				sDepartureAirport = Split(item[1],"\n")[1]
+				
+				sArrivalTime = Split(item[2],"\n")[0]
+				If InStr(sArrivalTime,"+1Day",0,False) > 0
+					
+					sArrivalDate = Time.Format(Time.DateAdd("d",1,Time.Date()),"mm/dd/yyyy") & " " &  sArrivalTime
+					
+				Else
+					
+					sArrivalDate = Time.Format(Time.Date(),"mm/dd/yyyy") & " " &  sArrivalTime
+					
+				End If
+				
+				sArrivalAirport = Split(item[2],"\n")[1]
+				
+				If Replace(Split(item[3],"\n")[0],"¥","") = "--"
+					
+					dEconomyPrice = 0.00
+					
+				Else
+					
+					dEconomyPrice = Math.Round(CNumber(Replace(Split(item[3],"\n")[0],"¥","")) * g_dictGlobal["ExchangeRate"],2)
+					
+				End If
+				
+				arrCurrentData = [nSlNo,sFlightName,sAirlineCompany,sFlightNo,sDepartureDate,sArrivalDate,dEconomyPrice,sDepartureAirport,sArrivalAirport]
+				
+				g_arrSouthernAirlineData = push(g_arrSouthernAirlineData,arrCurrentData)
+				
+				arrCurrentData = []
+				
+			Next
+			
+			// Closing the web page
+			
+			Log.Warn("Closing chinese southern airlines webpage")
+			CommonFunction.CleanUp(g_dictGlobal["BrowserProcessName"])
+			
+			
+		End If
+		
+	End If
+	
+Catch Ex
+	
+	g_dictGlobal["isEx"] = True
+	Log.Error("Application exception, failed to open extract data from China Southern Airlines website:" & CStr(Ex))
+	g_dictGlobal["ExceptionDetails"] = {}
+	g_dictGlobal["ExceptionDetails"]["Block"] = Ex["File"]
+	g_dictGlobal["ExceptionDetails"]["Line"]  = Ex["Line"]
+	g_dictGlobal["ExceptionDetails"]["Message"] = Ex["Message"]
+	
+End Try
+
+TracePrint "——————Exit China southern airlines data capture module——————"
+

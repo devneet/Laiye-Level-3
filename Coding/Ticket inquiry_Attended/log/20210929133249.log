@@ -1,0 +1,7 @@
+[29-09-2021 13:32:49][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 13:32:49][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[29-09-2021 13:32:49][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 13:33:12][INFO][Initialization.task][38] Setting up the output report file path
+[29-09-2021 13:33:12][INFO][Initialization.task][54] Checking if configuration file exists
+[29-09-2021 13:33:12][INFO][Initialization.task][66] Fetching configuration details
+[29-09-2021 13:33:21][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

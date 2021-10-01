@@ -1,0 +1,8 @@
+[29-09-2021 04:43:04][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 04:43:04][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[29-09-2021 04:43:04][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 04:43:23][INFO][Initialization.task][35] Setting up the output report file path
+[29-09-2021 04:43:23][INFO][Initialization.task][53] Checking if Office is installed
+[29-09-2021 04:43:24][INFO][Initialization.task][62] Setting up credential values in the output report
+[29-09-2021 04:43:25][INFO][Initialization.task][71] Calling OpenExchange API for determining exchange rate.
+[29-09-2021 04:43:27][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

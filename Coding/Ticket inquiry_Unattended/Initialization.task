@@ -1,0 +1,129 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 27th,2021
+Initialization module
+1. Get parameters from Laiye Commander
+2. Global variable initialization
+3. Determine whether to install office
+*/
+
+
+TracePrint "——————Enter the initialization module——————"
+
+Try
+
+    Dim dictCredentials = {}
+    Dim objExcelWorkBook = ""
+    Dim objJSON = ""
+    Dim sJsonResponse = ""
+	
+	// The record of the current running times of the process, that is, the retry count global variable
+	
+	g_iRetryNum = g_iRetryNum + 1
+	
+	g_dictGlobal = {}
+	dictCredentials = {}
+	
+	// Whether to record abnormally, the default is False
+	
+	g_dictGlobal["isEx"] = False
+	
+	// Log exception information
+	
+	g_dictGlobal["exInfo"] = "" 
+	
+	// Read parameters and credentials from Commander
+	
+	Log.Info("Fetching Laiye commander parameters and credentials details from server")
+	CommonFunction.InitializeFromCommander()
+	Log.Info("Laiye commander parameters and credentials details fetched successfully")
+	
+	// Set log level
+	
+	Log.SetLevel(g_dictGlobal["LogLevel"])
+	Log.Info("Setting up the output report file path")
+	
+	
+	// Set output file path
+	
+	g_dictGlobal["OutputFilePath"] = Replace(File.ParentPath(@res"Template.xlsx"),"\\","\\\\") & "\\\\" & Time.Format(Time.Date(),"yyyymmdd") & "_" & g_dictGlobal["PlaceOfDeparture"] & "_" & g_dictGlobal["PlaceOfArrival"] & "_" & g_dictGlobal["UserName"] & ".xlsx"
+	
+	If File.FileExists(g_dictGlobal["OutputFilePath"])
+		
+		Log.Warn("Deleting the output report file as it already exists")
+		File.DeleteFile(g_dictGlobal["OutputFilePath"])
+		
+	End If
+	
+	// Set config file path
+	
+	Log.Info("Checking if configuration file exists")
+	g_dictGlobal["ConfigFilePath"] = Replace(File.ParentPath(@res"Config.xlsx"),"\\","\\\\")  & "\\Config.xlsx"
+	
+	If Not File.FileExists(g_dictGlobal["ConfigFilePath"])
+		
+		g_dictGlobal["isEx"] = True
+		Log.Error("Initialization exception, configuration file is missing")
+		
+	Else
+		
+		// Get configuration details
+		
+		Log.Info("Fetching configuration details")
+		CommonFunction.InitializeFromConfig(g_dictGlobal["ConfigFilePath"])
+		Log.Info("Configuration details fetched successfully")
+		
+		
+		// Clean up applications
+		
+		Log.Info("Cleaning up all applications")
+		
+		// Clean up Chrome application
+		
+		CommonFunction.CleanUp(g_dictGlobal["BrowserProcessName"])
+		
+		// Clean up Excel application
+		
+		CommonFunction.CleanUp(g_dictGlobal["ExcelProcessName"])
+		
+		// Determine whether to install office
+		
+		Log.Info("Checking if Office is installed")
+		
+		objExcelWorkBook = Excel.OpenExcel(@res"Template.xlsx",False)
+		Excel.SaveOtherFile(objExcelWorkBook,g_dictGlobal["OutputFilePath"])
+		Excel.CloseExcel(objExcelWorkBook,False)
+		
+		
+		// Set credentials in the credential sheet
+		
+		Log.Info("Setting up credential values in the output report")
+		
+		objExcelWorkBook = Excel.OpenExcel(g_dictGlobal["OutputFilePath"],False)
+		Excel.WriteCell(objExcelWorkBook,g_dictGlobal["OutputCredentialSheetName"],g_dictGlobal["UsernameCell"],g_dictGlobal["UserName"],False)
+		Excel.WriteCell(objExcelWorkBook,g_dictGlobal["OutputCredentialSheetName"],g_dictGlobal["PasswordCell"],g_dictGlobal["Password"],False)
+		Excel.CloseExcel(objExcelWorkBook,True)
+		
+		// Get Exchange Rate Value
+		
+		Log.Info("Calling OpenExchange API for determining exchange rate.")
+		sJsonResponse = HTTP.Get(g_dictGlobal["ExchangeRateAPIEndPoint"], {}, CInt(g_dictGlobal["TimeoutXL"]))
+		objJSON = JSON.Parse(sJsonResponse)
+		g_dictGlobal["ExchangeRate"] = Math.Round((1 / CNumber(objJSON["rates"][g_dictGlobal["CurrencySymbol"]])),2)
+		
+	End If
+	
+Catch Ex
+	
+	g_dictGlobal["isEx"] = True
+	Log.Error("Initialization exception, failed to open office:" & CStr(Ex))
+	g_dictGlobal["ExceptionDetails"] = {}
+	g_dictGlobal["ExceptionDetails"]["Block"] = Ex["File"]
+	g_dictGlobal["ExceptionDetails"]["Line"]  = Ex["Line"]
+	g_dictGlobal["ExceptionDetails"]["Message"] = Ex["Message"]
+	
+End Try
+
+TracePrint "——————Exit the initialization module——————"
+
+

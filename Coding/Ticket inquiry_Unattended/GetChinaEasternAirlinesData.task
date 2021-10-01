@@ -1,0 +1,216 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 27th,2021
+Extract China Eastern Airlines Data module
+7. Open China Eastern Airlines webpage
+8. Enter the flight search parameters
+9. Capture the search results
+*/
+
+TracePrint "——————Enter the China eastern airlines data capture module——————"
+
+Try
+	
+	Dim hWeb = "" 
+	Dim iExists = ""
+	Dim sCmdOutput = "" 
+	Dim sMessage = ""
+	Dim arrayData = []
+	Dim arrCurrentData = []
+	Dim dEconomyPrice = 0.0
+	Dim g_hWeb = ""
+	Dim nSlNo = 0
+	Dim sAirlineCompany = ""
+	Dim sArrivalAirport = ""
+	Dim sArrivalDate = ""
+	Dim sArrivalTime = ""
+	Dim sDateToSelect = ""
+	Dim sDepartureAirport = ""
+	Dim sDepartureDate = ""
+	Dim sDepartureTime = ""
+	Dim sFlightName = ""
+	Dim sFlightNo = ""
+	Dim nDayOfDeparture = ""
+	Dim sMonthYearOfDeparture = ""
+	
+	// Open the China Eastern Airlines website
+	
+	Log.Info("Open Chrome browser and enter the China Eastern Airlines webpage")
+	g_hWeb = WebBrowser.Create("chrome",g_dictGlobal["ChinaEasternAirlinesURL"],CInt(g_dictGlobal["TimeoutXL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"sBrowserPath":"","sStartArgs":""})
+	
+	// Set window maximized
+	
+	#icon("@res:udr1l584-eok0-jua5-tqtu-4rqcc1oj1tcu.png")
+	Window.Show({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*Google Chrome","app":"chrome"}]},"max")
+	Log.Info("The webpage window is maximized")
+	
+	// Wait for the page to load
+	#icon("@res:2fqn2f9q-6fmm-c7io-kfr2-7mpanmi5j0ju.png")
+	iExists = WebBrowser.WaitPage(g_hWeb,{"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"IMG"}]},CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"])})
+	Log.Info("The page load return value is: " & CStr(iExists) & " (success:1,failure:0)")
+	
+	// Determine whether the page element exists
+	
+	If iExists = 0
+		
+		Log.Error("Page loading exception. Server seems to be down while accessing China Eastern Airlines webpage.")
+		g_dictGlobal["isEx"] = True
+		Throw "Page loading exception. Server seems to be down while accessing China Eastern Airlines webpage."
+		
+		
+	Else	
+		
+		// Entering search parameters
+		
+		Log.Info("Entering the search parameters for China Eastern Airlines")
+		Delay(2000)
+		
+		#icon("@res:jqtvv946-7eg7-r2db-6cdb-bs1v9havfi1t.png")
+		Keyboard.InputText({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"from"}]},g_dictGlobal["PlaceOfDeparture"],True,20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sSimulate":"message","bValidate":False,"bClickBeforeInput":False})
+		#icon("@res:default.png")
+		Keyboard.PressKey({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"from"}]},"Enter",20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sKeyModifiers":[],"sSimulate":"simulate","bClickBeforeInput":False})
+		#icon("@res:tonuplcb-v3in-c6d8-gd96-3c3ujmcaus5q.png")
+		Keyboard.InputText({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"to"}]},g_dictGlobal["PlaceOfArrival"],True,20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sSimulate":"message","bValidate":False,"bClickBeforeInput":False})
+		#icon("@res:default.png")
+		Keyboard.PressKey({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"INPUT","id":"to"}]},"Enter",20,CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sKeyModifiers":[],"sSimulate":"simulate","bClickBeforeInput":False})
+		
+        For i=1 To 6
+            
+            Keyboard.Press("Tab", "press", [],{"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"sSimulate":"simulate"})
+
+        Next
+
+         Keyboard.Press("Enter", "press", [],{"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"sSimulate":"simulate"})
+		
+		#icon("@res:fo5hmnpd-iipa-aamo-19c4-moscmfsfgirm.png")
+		Mouse.Action({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"BUTTON","parentid":"form","aaname":"Search and book flights"}]},"left","click",CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True,"sCursorPosition":"Center","iCursorOffsetX":0,"iCursorOffsetY":0,"sKeyModifiers":[],"sSimulate":"simulate","bMoveSmoothly":False})
+		
+		// Wait for the search results to load
+		
+		Log.Info("Waiting for the search results to load")
+		
+		
+		#icon("@res:vojfalca-kne4-cpgn-mv0e-kr93u2a8jaeh.png")
+		iExists = WebBrowser.WaitPage(g_hWeb,{"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"IMG","parentid":"result-0","css-selector":"body>main>div>div>div>div>div>div>section>div>div>div>div>span>img"}]},CInt(g_dictGlobal["TimeoutL"]),{"bContinueOnError":False,"iDelayAfter":CInt(g_dictGlobal["DelayM"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"])})
+		Log.Info("The page load return value is: " & CStr(iExists) & " (success:1,failure:0)")
+		
+		
+		// Determine whether the exception message exists
+		
+		#icon("@res:hcbt806l-bslq-h0pj-btub-s1b1doars1u9.png")
+		sMessage = Text.Get({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"H3"}]},CInt(g_dictGlobal["TimeoutM"]),{"bContinueOnError":True,"iDelayAfter":CInt(g_dictGlobal["DelayXS"]),"iDelayBefore":CInt(g_dictGlobal["DelayXS"]),"bSetForeground":True})
+		
+		If InStr(sMessage,"Your required flight is unavailable",0,False) > 0
+			
+			Log.Error("Page loading exception. No search results found while searching results on China Eastern Airlines webpage.")
+			g_dictGlobal["isEx"] = True
+			
+			
+		Else
+			
+			// Extract flight details from search results
+			
+			Log.Info("Extracting flight details from the China Eastern Airlines webpage.")
+			
+			arrayData = UiElement.DataScrap({"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"DIV","id":"result-0"}]},{"ExtractTable":0,"Columns":[{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"row cabin-header flex","value":"div.row.cabin-header.flex","prefix":">"},{"tag":"div","index":0,"className":"flex-1 border-left service-container flex-col","value":"div.flex-1.border-left.service-container.flex-col","prefix":">"},{"tag":"div","index":0,"className":"popup-container is-new ","value":"div.popup-container.is-new","prefix":">"},{"tag":"div","index":0,"className":"son-container","value":"div.son-container","prefix":">"},{"tag":"div","index":0,"className":"pop-container","value":"div.pop-container","prefix":">"},{"tag":"div","index":0,"className":"plane-type-container flex-col","value":"div.plane-type-container.flex-col","prefix":">"},{"tag":"div","index":0,"className":"tab-container flex ju-center","value":"div.tab-container.flex.ju-center","prefix":">"},{"tag":"div","index":0,"className":"type-container checked","value":"div.type-container.checked","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"row cabin-header flex","value":"div.row.cabin-header.flex","prefix":">"},{"tag":"div","index":0,"className":"flex-5","value":"div.flex-5","prefix":">"},{"tag":"div","index":0,"className":"row ma-top-8 header-info-container","value":"div.row.ma-top-8.header-info-container","prefix":">"},{"tag":"div","value":"div","index":0,"prefix":">"},{"tag":"span","index":0,"className":"title-airport","value":"span.title-airport","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"row cabin-header flex","value":"div.row.cabin-header.flex","prefix":">"},{"tag":"div","index":0,"className":"flex-5","value":"div.flex-5","prefix":">"},{"tag":"div","index":0,"className":"row ma-top-8 header-info-container","value":"div.row.ma-top-8.header-info-container","prefix":">"},{"tag":"div","index":4,"className":"col-sm-2 flex-col","value":"div:nth-child(4)","prefix":">"},{"tag":"span","index":0,"className":"title-airport","value":"span.title-airport","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"row cabin-header flex","value":"div.row.cabin-header.flex","prefix":">"},{"tag":"div","index":0,"className":"flex-5","value":"div.flex-5","prefix":">"},{"tag":"div","index":0,"className":"row ma-top-8 header-info-container","value":"div.row.ma-top-8.header-info-container","prefix":">"},{"tag":"div","index":3,"className":"col-sm-2 flex-col","value":"div:nth-child(3)","prefix":">"},{"tag":"span","index":0,"className":"title-airport","value":"span.title-airport","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"row cabin-header flex","value":"div.row.cabin-header.flex","prefix":">"},{"tag":"div","index":0,"className":"flex-5","value":"div.flex-5","prefix":">"},{"tag":"div","index":0,"className":"row ma-top-8 header-info-container","value":"div.row.ma-top-8.header-info-container","prefix":">"},{"tag":"div","value":"div","index":0,"prefix":">"},{"tag":"span","index":0,"className":"title-time","value":"span.title-time","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"row cabin-header flex","value":"div.row.cabin-header.flex","prefix":">"},{"tag":"div","index":0,"className":"flex-5","value":"div.flex-5","prefix":">"},{"tag":"div","index":0,"className":"row ma-top-8 header-info-container","value":"div.row.ma-top-8.header-info-container","prefix":">"},{"tag":"div","index":4,"className":"col-sm-2 flex-col","value":"div:nth-child(4)","prefix":">"},{"tag":"span","index":0,"className":"title-time","value":"span.title-time","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"row cabin-header flex","value":"div.row.cabin-header.flex","prefix":">"},{"tag":"div","index":0,"className":"flex-5","value":"div.flex-5","prefix":">"},{"tag":"div","index":0,"className":"row ma-top-8 header-info-container","value":"div.row.ma-top-8.header-info-container","prefix":">"},{"tag":"div","index":3,"className":"col-sm-2 flex-col","value":"div:nth-child(3)","prefix":">"},{"tag":"span","index":0,"className":"title-time","value":"span.title-time","prefix":">"}],"props":["text"]},{"selecors":[{"tag":"ul","index":0,"className":"flightDetails","value":"ul.flightDetails","prefix":""},{"tag":"section","value":"section","index":0,"prefix":">"},{"tag":"div","index":0,"className":"cabin-container flex row","value":"div.cabin-container.flex.row","prefix":">"},{"tag":"div","index":0,"className":"economy-class-container flex-col ma-right-2","value":"div.economy-class-container.flex-col.ma-right-2","prefix":">"},{"tag":"div","index":0,"className":"bg-container","value":"div.bg-container","prefix":">"},{"tag":"div","index":0,"className":"bg-bottom flex-col","value":"div.bg-bottom.flex-col","prefix":">"},{"tag":"div","index":0,"className":"price-container flex","value":"div.price-container.flex","prefix":">"},{"tag":"span","index":0,"className":"title-price","value":"span.title-price","prefix":">"}],"props":["text"]}]},{"objNextLinkElement":{"wnd":[{"cls":"Chrome_WidgetWin_1","title":"*","app":"chrome"},{"cls":"Chrome_RenderWidgetHostHWND","title":"Chrome Legacy Window"}],"html":[{"tag":"BUTTON","parentid":"result-0","aaname":"Show more flights"}]},"iMaxNumberOfPage":5,"iMaxNumberOfResult":-1,"iDelayBetweenMS":CInt(g_dictGlobal["DelayS"]),"bContinueOnError":False})
+			
+			// Creating Eastern Airlines Data Array
+			Log.Info("Creating eastern airlines data array.")
+			
+			nSlNo =0
+			
+			For Each item In arrayData
+				
+				nSlNo = nSlNo+1
+				
+				sFlightName = "China Eastern Airlines"
+				
+				sAirlineCompany = "China Eastern Airlines"
+				
+				sFlightNo = item[0]
+				
+				sDepartureTime = item[4]
+				If InStr(sDepartureTime,"+1Days",0,False) > 0
+					
+					sDepartureDate = Time.Format(Time.DateAdd("d",1,Time.Date()),"mm/dd/yyyy") & " " &  sDepartureTime
+					
+				Else
+					
+					sDepartureDate = Time.Format(Time.Date(),"mm/dd/yyyy") & " " &  sDepartureTime
+					
+				End If
+				
+				sDepartureAirport = item[1]
+				
+				
+				If Trim(item[5]) = ""
+					
+					sArrivalTime = item[6]
+					
+				Else
+					
+					sArrivalTime = item[5]
+					
+				End If
+				
+				If InStr(sArrivalTime,"+1Days",0,False) > 0
+					
+					sArrivalDate = Time.Format(Time.DateAdd("d",1,Time.Date()),"mm/dd/yyyy") & " " &  sArrivalTime
+					
+				Else
+					
+					sArrivalDate = Time.Format(Time.Date(),"mm/dd/yyyy") & " " &  sArrivalTime
+					
+				End If
+				
+				If Trim(item[2]) = ""
+					
+					sArrivalAirport = item[3]
+					
+				Else
+					
+					sArrivalAirport = item[2]
+					
+				End If
+				
+				If Trim(item[7]) = "--" Or Trim(item[7]) = ""
+					
+					dEconomyPrice = 0.00
+					
+				Else
+					
+					dEconomyPrice = Math.Round(CNumber(item[7]),2)
+					
+				End If
+				
+				arrCurrentData = [nSlNo,sFlightName,sAirlineCompany,sFlightNo,sDepartureDate,sArrivalDate,dEconomyPrice,sDepartureAirport,sArrivalAirport]
+				
+				g_arrEasternAirlineData = push(g_arrEasternAirlineData,arrCurrentData)
+				
+				arrCurrentData = []
+				
+			Next
+			
+			
+			// Closing the web page
+			
+			Log.Warn("Closing chinese eastern airlines webpage")
+			CommonFunction.CleanUp(g_dictGlobal["BrowserProcessName"])
+			
+		End If
+		
+	End If
+	
+Catch Ex
+	
+	g_dictGlobal["isEx"] = True
+	Log.Error("Application exception, failed to open extract data from China Eastern Airlines website:" & CStr(Ex))
+	g_dictGlobal["ExceptionDetails"] = {}
+	g_dictGlobal["ExceptionDetails"]["Block"] = Ex["File"]
+	g_dictGlobal["ExceptionDetails"]["Line"]  = Ex["Line"]
+	g_dictGlobal["ExceptionDetails"]["Message"] = Ex["Message"]
+	
+End Try
+
+TracePrint "——————Exit China eastern airlines data capture module——————"
+

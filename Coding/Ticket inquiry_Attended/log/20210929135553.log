@@ -1,0 +1,20 @@
+[29-09-2021 13:55:53][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 13:55:53][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[29-09-2021 13:55:53][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 13:55:53][INFO][Initialization.task][32] Fetching Laiye commander parameters and credentials details from server
+[29-09-2021 13:56:18][INFO][Initialization.task][34] Laiye commander parameters and credentials details fetched successfully
+[29-09-2021 13:56:18][INFO][Initialization.task][39] Setting up the output report file path
+[29-09-2021 13:56:18][WARN][Initialization.task][48] Deleting the output report file as it already exists
+[29-09-2021 13:56:18][INFO][Initialization.task][55] Checking if configuration file exists
+[29-09-2021 13:56:18][INFO][Initialization.task][67] Fetching configuration details
+[29-09-2021 13:56:20][INFO][Initialization.task][69] Configuration details fetched successfully
+[29-09-2021 13:56:20][ERROR][Initialization.task][111] Initialization exception, failed to open office:{
+	"File" : "Initialization.task",
+	"Line" : 73,
+	"Message" : "Only array or dictionary type can be indexed",
+	"_InternalState_" : 1
+}
+[29-09-2021 13:56:21][ERROR][Initialization.task][113] Error running, and process aborted 
+Error message as following:
+Initialization.task line 113:  attempt to concatenate a null value
+[29-09-2021 13:56:21][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

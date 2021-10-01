@@ -1,0 +1,42 @@
+[28-09-2021 15:13:12][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[28-09-2021 15:13:12][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[28-09-2021 15:13:12][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[28-09-2021 15:13:21][INFO][Initialization.task][47] Setting up the output report file path
+[28-09-2021 15:13:21][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[28-09-2021 15:13:21][INFO][Initialization.task][65] Checking if Office is installed
+[28-09-2021 15:13:23][INFO][Initialization.task][74] Setting up credential values in the output report
+[28-09-2021 15:13:24][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[28-09-2021 15:13:24][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[28-09-2021 15:13:24][INFO][GetChinaSouthernAirlinesData.task][22] Open Chrome browser and enter the China Southern Airlines webpage
+[28-09-2021 15:13:36][INFO][GetChinaSouthernAirlinesData.task][29] The webpage window is maximized
+[28-09-2021 15:13:50][INFO][GetChinaSouthernAirlinesData.task][34] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:13:50][INFO][GetChinaSouthernAirlinesData.task][48] Entering the search parameters for China Southern Airlines
+[28-09-2021 15:14:11][INFO][GetChinaSouthernAirlinesData.task][66] Waiting for the search results to load
+[28-09-2021 15:14:32][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:14:37][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:14:43][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:14:49][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:14:54][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:00][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:06][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:12][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:17][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:23][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:29][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:35][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:40][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:46][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:52][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:15:57][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:03][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:09][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:15][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:20][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:26][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:32][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:38][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:44][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:49][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:16:55][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:17:01][INFO][GetChinaSouthernAirlinesData.task][74] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 15:17:05][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

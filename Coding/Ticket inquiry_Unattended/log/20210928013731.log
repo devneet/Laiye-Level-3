@@ -1,0 +1,20 @@
+[28-09-2021 01:37:31][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[28-09-2021 01:37:31][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[28-09-2021 01:37:31][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[28-09-2021 01:37:49][INFO][Initialization.task][47] Setting up the output report file path
+[28-09-2021 01:37:50][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[28-09-2021 01:37:50][INFO][Initialization.task][65] Checking if Office is installed
+[28-09-2021 01:37:51][INFO][Initialization.task][74] Setting up credential values in the output report
+[28-09-2021 01:37:52][WARN][Initialization.task][82] Killing running chrome processes as a part of initial cleanup
+[28-09-2021 01:37:52][WARN][Initialization.task][86] Killing running chrome processes as a part of initial cleanup
+[28-09-2021 01:37:52][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[28-09-2021 01:37:52][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[28-09-2021 01:37:52][INFO][GetChinaSouthernAirlinesData.task][20] Open Chrome browser and enter the China Southern Airlines webpage
+[28-09-2021 01:38:04][INFO][GetChinaSouthernAirlinesData.task][27] The webpage window is maximized
+[28-09-2021 01:38:12][INFO][GetChinaSouthernAirlinesData.task][32] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 01:38:12][INFO][GetChinaSouthernAirlinesData.task][48] Entering the search parameters for China Southern Airlines
+[28-09-2021 01:38:34][INFO][GetChinaSouthernAirlinesData.task][68] Waiting for the search results to load
+[28-09-2021 01:38:37][INFO][GetChinaSouthernAirlinesData.task][72] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 01:38:37][INFO][GetChinaSouthernAirlinesData.task][88] Extracting flight details from the China Southern Airlines webpage.
+[28-09-2021 01:38:38][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Business Exception?”The result is false
+[28-09-2021 01:38:38][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

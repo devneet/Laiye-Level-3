@@ -1,0 +1,1 @@
+{"Description":"Excel Advanced Operations","GETRANGEOFCELLS":{"Description":"This command is used to get the dynamic range of cells in use for a given excel sheet and a file","TranslateTemplate":"Fetching the dynamic range from sheet, %1% in the file, %2%"}}

@@ -1,0 +1,51 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 27th,2021
+Notify Exception module
+17. Notify business about exceptions that occuried even after all retry attempts
+18. Clean up all the applications that are running
+*/
+
+TracePrint "——————Enter the notify exception module——————"
+
+Try
+	
+    Dim emailBody = ""
+    
+	// Creating email body that will be sent to business describing the exceptions that have occured during processing
+	
+	Log.Info("Creating the email body for the exception mail to be sent out.")
+	emailBody = Replace(Replace(Replace(g_dictGlobal["FailureEmailBody"],"{BLOCK_NAME}",g_dictGlobal["ExceptionDetails"]["Block"]),"{ERROR_LINE_NUMBER}",g_dictGlobal["ExceptionDetails"]["Line"]),"{ERROR_MESSAGE}",g_dictGlobal["ExceptionDetails"]["Message"])
+	
+	// Sending exception email to business
+	
+	Log.Info("Sending exception email to business")
+	CommonFunction.SendEmail( g_dictGlobal["SenderEmail"],g_dictGlobal["BusinessEmail"],g_dictGlobal["FailureEmailSubject"], emailBody,"")	
+	Log.Info("The exception email got sent out to business successfully")
+	
+	
+	// Clean up all applications
+	
+	Log.Info("Cleaning up all applications")
+	
+	// Clean up Chrome application
+	
+	CommonFunction.CleanUp(g_dictGlobal["BrowserProcessName"])
+	
+	// Clean up Excel application
+	
+	CommonFunction.CleanUp(g_dictGlobal["ExcelProcessName"])
+	
+Catch Ex
+	
+	g_dictGlobal["isEx"] = True
+	Log.Error("Initialization exception, failed to send exception email to business and clean up all applications:" & CStr(Ex))
+	g_dictGlobal["ExceptionDetails"] = {}
+	g_dictGlobal["ExceptionDetails"]["Block"] = Ex["File"]
+	g_dictGlobal["ExceptionDetails"]["Line"]  = Ex["Line"]
+	g_dictGlobal["ExceptionDetails"]["Message"] = Ex["Message"]
+	
+End Try
+
+TracePrint "——————Exit the notify exception module——————"
+

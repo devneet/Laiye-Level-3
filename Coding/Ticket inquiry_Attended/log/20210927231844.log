@@ -1,0 +1,15 @@
+[27-09-2021 23:18:44][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[27-09-2021 23:18:44][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[27-09-2021 23:18:44][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[27-09-2021 23:19:02][INFO][Initialization.task][47] Setting up the output report file path
+[27-09-2021 23:19:02][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[27-09-2021 23:19:02][INFO][Initialization.task][65] Checking if Office is installed
+[27-09-2021 23:19:03][INFO][Initialization.task][74] Setting up credential values in the output report
+[27-09-2021 23:19:04][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[27-09-2021 23:19:04][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[27-09-2021 23:19:04][INFO][GetChinaSouthernAirlinesData.task][15] Open Chrome browser and enter the China Southern Airlines webpage
+[27-09-2021 23:19:17][ERROR][GetChinaSouthernAirlinesData.task][24] Error running, and process aborted 
+Error message as following:
+GetChinaSouthernAirlinesData.task line 24:  Call error occurred in Module Window.Window. Show:Exception has been thrown by the target of an invocation.
+Cannot find window
+[27-09-2021 23:19:17][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

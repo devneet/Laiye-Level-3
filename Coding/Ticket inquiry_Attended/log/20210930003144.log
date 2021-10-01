@@ -1,0 +1,20 @@
+[30-09-2021 00:31:44][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Attended\
+[30-09-2021 00:31:44][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Process Air_Ticket_Enquiry_Process_Attended.flow start running
+[30-09-2021 00:31:44][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 00:31:44][ERROR][Initialization.task][118] Initialization exception, failed to open office:{
+	"File" : "Initialization.task",
+	"Line" : 37,
+	"Message" : " attempt to concatenate a null value",
+	"_InternalState_" : 1
+}
+[30-09-2021 00:31:44][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Exception？”The result is true
+[30-09-2021 00:31:44][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Notify Exception
+[30-09-2021 00:31:44][INFO][ExceptionNotifier.task][17] Creating the email body for the exception mail to be sent out.
+[30-09-2021 00:31:44][INFO][ExceptionNotifier.task][22] Sending exception email to business
+[30-09-2021 00:31:44][ERROR][ExceptionNotifier.task][42] Initialization exception, failed to send exception email to business and clean up all applications:{
+	"File" : "CommonFunction.task",
+	"Line" : 64,
+	"Message" : " Call error occurred in Module Outlook. SendMail:SendMail abnormal\nParameter 1 Must be String Type",
+	"_InternalState_" : 1
+}
+[30-09-2021 00:31:44][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Air_Ticket_Enquiry_Process_Attended.flow End of running

@@ -1,0 +1,7 @@
+[29-09-2021 18:15:09][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 18:15:09][INFO][Block.task][0] Process Block.task start running
+[29-09-2021 18:15:18][ERROR][Block.task][3] Error running, and process aborted 
+Error message as following:
+Block.task line 3:  Call error occurred in Module Outlook. SendMail:SendMail abnormal
+(-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Outlook does not recognize one or more names. ', None, 0, -2147467259), None)
+[29-09-2021 18:15:18][INFO][Block.task][0] Block.task End of running

@@ -1,0 +1,20 @@
+[28-09-2021 00:14:22][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[28-09-2021 00:14:22][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[28-09-2021 00:14:22][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[28-09-2021 00:14:40][INFO][Initialization.task][47] Setting up the output report file path
+[28-09-2021 00:14:40][WARN][Initialization.task][56] Deleting the output report file as it already exists
+[28-09-2021 00:14:40][INFO][Initialization.task][65] Checking if Office is installed
+[28-09-2021 00:14:41][INFO][Initialization.task][74] Setting up credential values in the output report
+[28-09-2021 00:14:42][WARN][Initialization.task][82] Killing running chrome processes as a part of initial cleanup
+[28-09-2021 00:14:43][WARN][Initialization.task][86] Killing running chrome processes as a part of initial cleanup
+[28-09-2021 00:14:43][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[28-09-2021 00:14:43][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[28-09-2021 00:14:43][INFO][GetChinaSouthernAirlinesData.task][19] Open Chrome browser and enter the China Southern Airlines webpage
+[28-09-2021 00:14:55][INFO][GetChinaSouthernAirlinesData.task][26] The webpage window is maximized
+[28-09-2021 00:15:03][INFO][GetChinaSouthernAirlinesData.task][31] The page load return value is: 1 (success:1,failure:0)
+[28-09-2021 00:15:03][INFO][GetChinaSouthernAirlinesData.task][47] Entering the search parameters for China Southern Airlines
+[28-09-2021 00:15:19][ERROR][GetChinaSouthernAirlinesData.task][60] Error running, and process aborted 
+Error message as following:
+GetChinaSouthernAirlinesData.task line 60:  Call error occurred in Module UiElement.UiElementAuto. SetValue:Exception has been thrown by the target of an invocation.
+Element not found
+[28-09-2021 00:15:19][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

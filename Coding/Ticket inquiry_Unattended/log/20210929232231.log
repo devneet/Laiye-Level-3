@@ -1,0 +1,7 @@
+[29-09-2021 23:22:31][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 23:22:31][INFO][Selected content][0] Process Selected content start running
+[29-09-2021 23:22:31][ERROR][Selected content][1] Error running, and process aborted 
+Error message as following:
+Selected content line 1:  Call error occurred in Module WebBrowserPlugin.UIRobotWebBrowser. WaitPage:Exception has been thrown by the target of an invocation.
+Unknown Exception
+[29-09-2021 23:22:31][INFO][Selected content][0] Selected content End of running

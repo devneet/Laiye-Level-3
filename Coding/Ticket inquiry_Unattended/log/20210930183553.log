@@ -1,0 +1,22 @@
+[30-09-2021 18:35:53][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Coding\Ticket inquiry_Unattended\
+[30-09-2021 18:35:53][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Process Air_Ticket_Enquiry_Process_Unattended.flow start running
+[30-09-2021 18:35:53][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Enter block Initialization
+[30-09-2021 18:35:53][INFO][Initialization.task][37] Fetching Laiye commander parameters and credentials details from server
+[30-09-2021 18:36:30][INFO][Initialization.task][39] Laiye commander parameters and credentials details fetched successfully
+[30-09-2021 18:36:30][INFO][Initialization.task][44] Setting up the output report file path
+[30-09-2021 18:36:30][WARN][Initialization.task][53] Deleting the output report file as it already exists
+[30-09-2021 18:36:30][INFO][Initialization.task][60] Checking if configuration file exists
+[30-09-2021 18:36:30][INFO][Initialization.task][72] Fetching configuration details
+[30-09-2021 18:36:33][INFO][Initialization.task][74] Configuration details fetched successfully
+[30-09-2021 18:36:33][INFO][Initialization.task][79] Cleaning up all applications
+[30-09-2021 18:36:33][INFO][Initialization.task][91] Checking if Office is installed
+[30-09-2021 18:36:34][INFO][Initialization.task][100] Setting up credential values in the output report
+[30-09-2021 18:36:34][INFO][Initialization.task][109] Calling OpenExchange API for determining exchange rate.
+[30-09-2021 18:36:36][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Determine“Exception？”The result is false
+[30-09-2021 18:36:36][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Enter block Get Southern Data
+[30-09-2021 18:36:36][INFO][GetChinaSouthernAirlinesData.task][36] Open Chrome browser and enter the China Southern Airlines webpage
+[30-09-2021 18:36:44][INFO][GetChinaSouthernAirlinesData.task][43] The webpage window is maximized
+[30-09-2021 18:37:02][INFO][GetChinaSouthernAirlinesData.task][48] The page load return value is: 1 (success:1,failure:0)
+[30-09-2021 18:37:02][INFO][GetChinaSouthernAirlinesData.task][63] Entering the search parameters for China Southern Airlines
+[30-09-2021 18:37:25][INFO][GetChinaSouthernAirlinesData.task][86] Waiting for the search results to load
+[30-09-2021 18:37:26][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Air_Ticket_Enquiry_Process_Unattended.flow End of running

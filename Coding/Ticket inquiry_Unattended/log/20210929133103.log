@@ -1,0 +1,10 @@
+[29-09-2021 13:31:03][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 13:31:03][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[29-09-2021 13:31:03][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 13:31:25][INFO][Initialization.task][38] Setting up the output report file path
+[29-09-2021 13:31:25][WARN][Initialization.task][47] Deleting the output report file as it already exists
+[29-09-2021 13:31:25][INFO][Initialization.task][54] Checking if configuration file exists
+[29-09-2021 13:31:25][ERROR][Initialization.task][55] Error running, and process aborted 
+Error message as following:
+Initialization.task line 55:  attempt to concatenate a null value (field 'G_CONFIGFILENAME')
+[29-09-2021 13:31:25][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

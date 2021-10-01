@@ -1,0 +1,150 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 29th,2021
+Finalization module
+13. Compare economy prices between flights in Southern Chinese and Trip
+14. Compare economy prices between flights in Eastern Chinese and Trip
+15. Create output report based on the analysis
+16. Send email to business with the output report
+*/
+
+TracePrint "——————Enter the finalization module——————"
+
+Try
+	
+	Dim arrFinalOutput = []
+	Dim arrCurrentItem = []
+    Dim nSlNoToSet = 0
+    Dim objDatatable = ""
+    Dim objExcelWorkbook = ""
+    Dim sAirlineCompanyToSet = ""
+    Dim sArrivalAirportToSet = ""
+    Dim sArrivalDateSet = ""
+    Dim sDepartureAirportToSet = ""
+    Dim sDepartureDateSet = ""
+    Dim sEconomyClassFareToSet = ""
+    Dim sFlightNameToSet = ""
+    Dim sFlightNoToSet = ""
+	
+	// Performing analysis between Southern airline data and Trip data
+	
+	Log.Info("Performing the analyis between southern chinese airlines data and trip data")
+	nSlNoToSet = 0
+	For Each sourthernAirlinesDataItem In g_arrSouthernAirlineData
+		
+		nSlNoToSet = 1 + nSlNoToSet
+		sFlightNameToSet = sourthernAirlinesDataItem[1]
+		sAirlineCompanyToSet = sourthernAirlinesDataItem[2]
+		sFlightNoToSet = sourthernAirlinesDataItem[3]
+		sDepartureDateSet = sourthernAirlinesDataItem[4]
+		sArrivalDateSet = sourthernAirlinesDataItem[5]
+		sEconomyClassFareToSet = sourthernAirlinesDataItem[6]
+		sDepartureAirportToSet = sourthernAirlinesDataItem[7]
+		sArrivalAirportToSet = sourthernAirlinesDataItem[8]
+		
+		For Each tripDataItem In g_arrTripData
+			
+			If sourthernAirlinesDataItem[3] = tripDataItem[3]
+				
+				If tripDataItem[6] > sourthernAirlinesDataItem[6]
+					
+					sFlightNameToSet = tripDataItem[1]
+					sAirlineCompanyToSet = tripDataItem[2]
+					sEconomyClassFareToSet = tripDataItem[6]
+					Break
+					
+				End If
+				
+			End If
+			
+		Next
+		
+		arrCurrentItem = [nSlNoToSet,sFlightNameToSet,sAirlineCompanyToSet,sFlightNoToSet,sDepartureDateSet,sArrivalDateSet,sEconomyClassFareToSet,sDepartureAirportToSet,sArrivalAirportToSet]
+		arrFinalOutput = push(arrFinalOutput,arrCurrentItem)
+		arrCurrentItem = []
+		
+	Next
+	
+	// Performing analysis between Eastern airline data and Trip data
+	
+	Log.Info("Performing the analyis between eastern chinese airlines data and trip data")
+	arrCurrentItem = []
+	For Each easternAirlinesDataItem In g_arrEasternAirlineData
+		
+		nSlNoToSet = 1 + nSlNoToSet
+		sFlightNameToSet = easternAirlinesDataItem[1]
+		sAirlineCompanyToSet = easternAirlinesDataItem[2]
+		sFlightNoToSet = easternAirlinesDataItem[3]
+		sDepartureDateSet = easternAirlinesDataItem[4]
+		sArrivalDateSet = easternAirlinesDataItem[5]
+		sEconomyClassFareToSet = easternAirlinesDataItem[6]
+		sDepartureAirportToSet = easternAirlinesDataItem[7]
+		sArrivalAirportToSet = easternAirlinesDataItem[8]
+		
+		For Each tripDataItem In g_arrTripData
+			
+			If easternAirlinesDataItem[3] = tripDataItem[3]
+				
+				If tripDataItem[6] > easternAirlinesDataItem[6]
+					
+					sFlightNameToSet = tripDataItem[1]
+					sAirlineCompanyToSet = tripDataItem[2]
+					sEconomyClassFareToSet = tripDataItem[6]
+					Break
+					
+				End If
+				
+			End If
+			
+		Next
+		
+		arrCurrentItem = [nSlNoToSet,sFlightNameToSet,sAirlineCompanyToSet,sFlightNoToSet,sDepartureDateSet,sArrivalDateSet,sEconomyClassFareToSet,sDepartureAirportToSet,sArrivalAirportToSet]
+		arrFinalOutput = push(arrFinalOutput,arrCurrentItem)
+		arrCurrentItem = []
+		
+	Next
+	
+	
+	// Sort Final Output Array In Ascending Order
+	Log.Info("Sorting the final output array in ascending order as per economy class fare")
+	objDatatable = Datatable.BuildDataTable(arrFinalOutput,["Sl No","Flight Name", "Airline Company", "Flight Number", "Departure Date", "Arrival Date", "Economy Class Fare", "Departure Airport", "Arrival Airport"])
+	objDatatable = Datatable.SortDataTable(objDatatable,g_dictGlobal["SortingColumnName"],True)
+	arrFinalOutput = Datatable.GetDataTableByArray(objDatatable,False)
+	
+	
+	// Open the output report file
+	
+	Log.Info("Opening the output report file for generation of output data")
+	objExcelWorkbook = Excel.OpenExcel(g_dictGlobal["OutputFilePath"],True)
+	
+	// Writing Data To Output Report File
+	Log.Info("Writing final data to output report file")
+	Excel.WriteRange(objExcelWorkBook,g_dictGlobal["OutputDataSheetName"],g_dictGlobal["OutputDataStartCell"],arrFinalOutput,True)
+	
+	// Closing the output report file
+	
+	Log.Info("Closing the output report file")
+	Excel.CloseExcel(objExcelWorkbook,True)
+	
+	
+	// Sending output report email to business
+	
+	Log.Info("Sending output report email to business")
+	CommonFunction.SendEmail( g_dictGlobal["SenderEmail"],g_dictGlobal["BusinessEmail"],g_dictGlobal["SuccessEmailSubject"], g_dictGlobal["SuccessEmailBody"],g_dictGlobal["OutputFilePath"])	
+	Log.Info("The output report email got sent out to business successfully")
+	
+Catch Ex
+	
+	g_dictGlobal["isEx"] = True
+	Log.Error("Application exception, failed to generate output report and send email to Business:" & CStr(Ex))
+	g_dictGlobal["ExceptionDetails"] = {}
+	g_dictGlobal["ExceptionDetails"]["Block"] = Ex["File"]
+	g_dictGlobal["ExceptionDetails"]["Line"]  = Ex["Line"]
+	g_dictGlobal["ExceptionDetails"]["Message"] = Ex["Message"]
+	
+	
+End Try
+
+TracePrint "——————Exit the finalization module——————"
+
+

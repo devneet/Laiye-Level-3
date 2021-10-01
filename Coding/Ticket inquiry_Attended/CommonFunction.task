@@ -1,0 +1,71 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 29th,2021
+Public modules, storage functions, etc.
+*/
+
+
+Function FetchCredentialsFromWindows(credentialName)
+	
+	Dim dictCredentials = {}
+	
+	// Fetch credentials from Windows Credential Manager
+	
+	dictCredentials = Credential.Get(credentialName,"normal")
+	
+	g_dictGlobal["UserName"] = dictCredentials["username"]
+	g_dictGlobal["Password"] = dictCredentials["password"] 
+	
+End Function
+
+Function CleanUp(processName)
+	
+	Dim sRet = ""
+	
+	// Kill already running chrome processes
+	
+	sRet = Sys.Command("taskkill /f /IM " & processName)
+	
+End Function
+
+Function InitializeFromConfig(configFilePath)
+	
+	Dim sRange = ""
+	Dim objExcelWorkBook =""
+	Dim arrConfig = []
+	
+	// Reading configuration file
+	
+	sRange = DevneetExcelPlugin.getRangeOfCells(configFilePath,g_configSheetName)
+	objExcelWorkBook = Excel.OpenExcel(configFilePath,False,"Excel","","")
+	arrConfig = Excel.ReadRange(objExcelWorkBook,g_configSheetName,sRange)
+	Excel.CloseExcel(objExcelWorkBook,True)
+	
+	// Converting configuration array into dictionary
+	
+	For Each configItem In arrConfig
+		
+		g_dictGlobal[configItem[0]] = configItem[1]
+		
+	Next
+	
+	g_dictGlobal["MaxRetryNum"] = CInt(g_dictGlobal["MaxRetryNum"])
+	
+	///Testing///
+	
+	
+	///Testing///
+	
+End Function
+
+Function SendEmail(senderEmailId,receiverEmailId,emailSubject,emailBody,emailAttachment)
+	
+	Dim bStatus = ""
+	
+	// Sending email to business user
+	bStatus = Outlook.SendMail(senderEmailId,receiverEmailId,emailSubject,emailBody,"text",emailAttachment,"")
+	
+	
+End Function
+
+

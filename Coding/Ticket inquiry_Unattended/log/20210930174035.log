@@ -1,0 +1,21 @@
+[30-09-2021 17:40:35][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Coding\Ticket inquiry_Unattended\
+[30-09-2021 17:40:35][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Process Air_Ticket_Enquiry_Process_Unattended.flow start running
+[30-09-2021 17:40:35][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Enter block Initialization
+[30-09-2021 17:40:35][INFO][Initialization.task][37] Fetching Laiye commander parameters and credentials details from server
+[30-09-2021 17:41:05][ERROR][Initialization.task][119] Initialization exception, failed to open office:{
+	"File" : "CommonFunction.task",
+	"Line" : 20,
+	"Message" : " Call error occurred in Module Asset. GetAsset:The request returns an exception, status code: 401, details: Unauthorized(The current user/authorization may be forced to go offline, please check!)",
+	"_InternalState_" : 1
+}
+[30-09-2021 17:41:05][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Determine“Exception？”The result is true
+[30-09-2021 17:41:05][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Enter block Notify Exception
+[30-09-2021 17:41:05][INFO][ExceptionNotifier.task][17] Creating the email body for the exception mail to be sent out.
+[30-09-2021 17:41:05][INFO][ExceptionNotifier.task][22] Sending exception email to business
+[30-09-2021 17:41:05][ERROR][ExceptionNotifier.task][42] Initialization exception, failed to send exception email to business and clean up all applications:{
+	"File" : "CommonFunction.task",
+	"Line" : 68,
+	"Message" : " Call error occurred in Module Outlook. SendMail:SendMail abnormal\nParameter 1 Must be String Type",
+	"_InternalState_" : 1
+}
+[30-09-2021 17:41:05][INFO][Air_Ticket_Enquiry_Process_Unattended.flow][0] Air_Ticket_Enquiry_Process_Unattended.flow End of running

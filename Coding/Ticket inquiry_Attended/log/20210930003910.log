@@ -1,0 +1,20 @@
+[30-09-2021 00:39:10][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Attended\
+[30-09-2021 00:39:10][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Process Air_Ticket_Enquiry_Process_Attended.flow start running
+[30-09-2021 00:39:10][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Initialization
+[30-09-2021 00:39:10][INFO][Initialization.task][38] Checking if configuration file exists
+[30-09-2021 00:39:10][INFO][Initialization.task][50] Fetching configuration details
+[30-09-2021 00:39:12][INFO][Initialization.task][52] Configuration details fetched successfully
+[30-09-2021 00:39:12][INFO][Initialization.task][57] Setting up the output report file path
+[30-09-2021 00:39:12][INFO][Initialization.task][61] Cleaning up all applications
+[30-09-2021 00:39:12][INFO][Initialization.task][73] Fetching credentials details from Windows Credential Manager
+[30-09-2021 00:39:12][INFO][Initialization.task][75] Credentials details fetched successfully from Windows Credential Manager
+[30-09-2021 00:39:12][ERROR][Initialization.task][119] Initialization exception, failed to open office:{
+	"File" : "Initialization.task",
+	"Line" : 76,
+	"Message" : " attempt to concatenate a null value",
+	"_InternalState_" : 1
+}
+[30-09-2021 00:39:12][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Determine“Exception？”The result is true
+[30-09-2021 00:39:12][INFO][Air_Ticket_Enquiry_Process_Attended.flow][0] Enter block Notify Exception
+[30-09-2021 00:39:12][INFO][ExceptionNotifier.task][17] Creating the email body for the exception mail to be sent out.
+[30-09-2021 00:39:12][INFO][ExceptionNotifier.task][22] Sending exception email to business

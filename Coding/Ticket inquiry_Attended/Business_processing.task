@@ -1,0 +1,13 @@
+/*
+author：XXX
+Creation time：XXXX year XX month XX day
+Business process
+*/
+
+TracePrint "——————Enter the business processing module——————"
+
+// After judging the abnormality, set g_dictGlobal["isEx"] to TRUE
+g_dictGlobal["isEx"] = True
+
+TracePrint "——————Exit processing module——————"
+

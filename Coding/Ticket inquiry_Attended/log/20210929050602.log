@@ -1,0 +1,52 @@
+[29-09-2021 05:06:02][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 05:06:02][INFO][Air_Ticket_Enquiry_Process.flow][0] Process Air_Ticket_Enquiry_Process.flow start running
+[29-09-2021 05:06:02][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 05:06:21][INFO][Initialization.task][38] Setting up the output report file path
+[29-09-2021 05:06:21][WARN][Initialization.task][47] Deleting the output report file as it already exists
+[29-09-2021 05:06:21][INFO][Initialization.task][56] Checking if Office is installed
+[29-09-2021 05:06:22][INFO][Initialization.task][65] Setting up credential values in the output report
+[29-09-2021 05:06:23][INFO][Initialization.task][74] Calling OpenExchange API for determining exchange rate.
+[29-09-2021 05:06:25][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[29-09-2021 05:06:25][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[29-09-2021 05:06:25][INFO][GetChinaSouthernAirlinesData.task][23] Open Chrome browser and enter the China Southern Airlines webpage
+[29-09-2021 05:06:36][INFO][GetChinaSouthernAirlinesData.task][30] The webpage window is maximized
+[29-09-2021 05:06:46][INFO][GetChinaSouthernAirlinesData.task][35] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 05:06:46][INFO][GetChinaSouthernAirlinesData.task][49] Entering the search parameters for China Southern Airlines
+[29-09-2021 05:07:08][INFO][GetChinaSouthernAirlinesData.task][68] Waiting for the search results to load
+[29-09-2021 05:07:16][INFO][GetChinaSouthernAirlinesData.task][76] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 05:07:29][INFO][GetChinaSouthernAirlinesData.task][96] Extracting flight details from the China Southern Airlines webpage.
+[29-09-2021 05:07:29][INFO][GetChinaSouthernAirlinesData.task][101] Creating southern airlines data array.
+[29-09-2021 05:07:29][WARN][GetChinaSouthernAirlinesData.task][161] Killing running chrome processes as a part of initial cleanup
+[29-09-2021 05:07:29][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Business Exception?”The result is false
+[29-09-2021 05:07:29][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Eastern Data
+[29-09-2021 05:07:29][INFO][GetChinaEasternAirlinesData.task][23] Open Chrome browser and enter the China Eastern Airlines webpage
+[29-09-2021 05:07:41][INFO][GetChinaEasternAirlinesData.task][30] The webpage window is maximized
+[29-09-2021 05:07:51][INFO][GetChinaEasternAirlinesData.task][35] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 05:07:51][INFO][GetChinaEasternAirlinesData.task][49] Entering the search parameters for China Eastern Airlines
+[29-09-2021 05:08:10][INFO][GetChinaEasternAirlinesData.task][85] Waiting for the search results to load
+[29-09-2021 05:08:22][INFO][GetChinaEasternAirlinesData.task][90] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 05:08:35][INFO][GetChinaEasternAirlinesData.task][108] Extracting flight details from the China Eastern Airlines webpage.
+[29-09-2021 05:08:42][INFO][GetChinaEasternAirlinesData.task][113] Creating eastern airlines data array.
+[29-09-2021 05:08:42][ERROR][GetChinaEasternAirlinesData.task][189] Application exception, failed to open extract data from China Eastern Airlines website:{
+	"File" : "GetChinaEasternAirlinesData.task",
+	"Line" : 125,
+	"Message" : "Only array or dictionary type can be indexed",
+	"_InternalState_" : 1
+}
+[29-09-2021 05:08:42][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Business Exception?”The result is true
+[29-09-2021 05:08:42][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Retry?”The result is true
+[29-09-2021 05:08:42][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Initialization
+[29-09-2021 05:09:00][INFO][Initialization.task][38] Setting up the output report file path
+[29-09-2021 05:09:00][WARN][Initialization.task][47] Deleting the output report file as it already exists
+[29-09-2021 05:09:00][INFO][Initialization.task][56] Checking if Office is installed
+[29-09-2021 05:09:01][INFO][Initialization.task][65] Setting up credential values in the output report
+[29-09-2021 05:09:02][INFO][Initialization.task][74] Calling OpenExchange API for determining exchange rate.
+[29-09-2021 05:09:03][INFO][Air_Ticket_Enquiry_Process.flow][0] Determine“Exception？”The result is false
+[29-09-2021 05:09:03][INFO][Air_Ticket_Enquiry_Process.flow][0] Enter block Get Southern Data
+[29-09-2021 05:09:04][INFO][GetChinaSouthernAirlinesData.task][23] Open Chrome browser and enter the China Southern Airlines webpage
+[29-09-2021 05:09:16][INFO][GetChinaSouthernAirlinesData.task][30] The webpage window is maximized
+[29-09-2021 05:09:32][INFO][GetChinaSouthernAirlinesData.task][35] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 05:09:32][INFO][GetChinaSouthernAirlinesData.task][49] Entering the search parameters for China Southern Airlines
+[29-09-2021 05:09:54][INFO][GetChinaSouthernAirlinesData.task][68] Waiting for the search results to load
+[29-09-2021 05:10:02][INFO][GetChinaSouthernAirlinesData.task][76] The page load return value is: 1 (success:1,failure:0)
+[29-09-2021 05:10:08][INFO][Air_Ticket_Enquiry_Process.flow][0] Air_Ticket_Enquiry_Process.flow End of running

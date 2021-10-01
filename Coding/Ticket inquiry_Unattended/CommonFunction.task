@@ -1,0 +1,73 @@
+/*
+Author：Devneet Mohanty
+Creation time：Sep 29th,2021
+Public modules, storage functions, etc.
+*/
+
+
+Function InitializeFromCommander()
+	
+    Dim dictCredentials = {}
+
+	// Initialize parameters from Commander
+	g_dictGlobal["ChinaSouthernAirlinesURL"] = Asset.GetAsset("China Southern Airlines")
+	g_dictGlobal["ChinaEasternAirlinesURL"] = Asset.GetAsset("China Eastern Airlines")
+	g_dictGlobal["TripURL"] = Asset.GetAsset("Trip")
+	g_dictGlobal["PlaceOfDeparture"] = Asset.GetAsset("Place of Departure")
+	g_dictGlobal["PlaceOfArrival"] = Asset.GetAsset("Place of Arrival")
+	g_dictGlobal["ExchangeRateAPIEndPoint"] = Asset.GetAsset("Exchange Rate API")
+	g_dictGlobal["BusinessEmail"] = Asset.GetAsset("Email address")
+	g_dictGlobal["MaxRetryNum"] = CInt(Asset.GetAsset("maxRetryNum"))
+	g_dictGlobal["LogLevel"] = CInt(Asset.GetAsset("LogLevel"))
+	
+	//Initialize credentials from commander
+	dictCredentials = Asset.GetCredential("Credentials")
+	g_dictGlobal["UserName"] = dictCredentials["userName"]
+	g_dictGlobal["Password"] = dictCredentials["password"]
+	
+End Function
+
+Function CleanUp(processName)
+	
+    Dim sRet = ""
+
+	// Kill already running chrome processes
+	
+	sRet = Sys.Command("taskkill /f /IM " & processName)
+	
+End Function
+
+Function InitializeFromConfig(configFilePath)
+	
+	Dim sRange = ""
+	Dim objExcelWorkBook =""
+	Dim arrConfig = []
+	
+	// Reading configuration file
+	
+	sRange = DevneetExcelPlugin.getRangeOfCells(configFilePath,g_configSheetName)
+	objExcelWorkBook = Excel.OpenExcel(configFilePath,False,"Excel","","")
+	arrConfig = Excel.ReadRange(objExcelWorkBook,g_configSheetName,sRange)
+	Excel.CloseExcel(objExcelWorkBook,True)
+	
+	// Converting configuration array into dictionary
+	
+	For Each configItem In arrConfig
+		
+		g_dictGlobal[configItem[0]] = configItem[1]
+		
+	Next
+	
+End Function
+
+Function SendEmail(senderEmailId,receiverEmailId,emailSubject,emailBody,emailAttachment)
+	
+    Dim bStatus = ""
+	
+	// Sending email to business user
+	bStatus = Outlook.SendMail(senderEmailId,receiverEmailId,emailSubject,emailBody,"text",emailAttachment,"")
+	
+	
+End Function
+
+

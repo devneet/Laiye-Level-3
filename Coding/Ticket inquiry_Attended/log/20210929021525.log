@@ -1,0 +1,7 @@
+[29-09-2021 02:15:25][INFO][][0] Work path has been switched to C:\Users\devne\Documents\Laiye Level - 3\Ticket inquiry_Unattended\
+[29-09-2021 02:15:25][INFO][GetTripData.task][0] Process GetTripData.task start running
+[29-09-2021 02:15:25][INFO][GetTripData.task][25] Open Chrome browser and enter the Trip webpage
+[29-09-2021 02:15:25][ERROR][GetTripData.task][189] Error running, and process aborted 
+Error message as following:
+GetTripData.task line 189: Only array or dictionary type can be indexed
+[29-09-2021 02:15:25][INFO][GetTripData.task][0] GetTripData.task End of running

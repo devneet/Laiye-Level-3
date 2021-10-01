@@ -1,0 +1,12 @@
+/*
+author：XXX
+Creation time：XXXX year XX month XX day
+Public modules, storage functions, etc.
+*/
+
+Function Initialize
+	// Parameter initialization assignment
+	g_dictGlobal["username"] = "UiBot"
+	g_dictGlobal["password"] = "UiBot"
+End Function
+
